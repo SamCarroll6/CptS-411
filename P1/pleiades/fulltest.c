@@ -40,7 +40,7 @@ int main(int argc,char *argv[])
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_CHAR,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
-            int tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (t2.tv_usec-t1.tv_usec);
+            double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
             printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,tSend);
         }
    } 
@@ -55,7 +55,7 @@ int main(int argc,char *argv[])
             MPI_Irecv(&y,i,MPI_CHAR,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&request);
             MPI_Wait(&request, &status);
             gettimeofday(&t2,NULL);
-            int tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (t2.tv_usec-t1.tv_usec);
+            double tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
             printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
         }
    }
@@ -68,7 +68,7 @@ int main(int argc,char *argv[])
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_BYTE,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
-            int tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (t2.tv_usec-t1.tv_usec);
+            double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
             printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,tSend);
         }
    } 
@@ -81,7 +81,7 @@ int main(int argc,char *argv[])
             gettimeofday(&t1,NULL);
             MPI_Recv(&y,i,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
             gettimeofday(&t2,NULL);
-            int tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (t2.tv_usec-t1.tv_usec);
+            double tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
             printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
         }
    }
