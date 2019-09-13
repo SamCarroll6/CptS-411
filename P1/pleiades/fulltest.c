@@ -66,7 +66,7 @@ int main(int argc,char *argv[])
         for(i = 1; i < (MB + 1); i *=2)
         {
             gettimeofday(&t1,NULL);
-            MPI_Send(&x,200,MPI_BYTE,dest,0,MPI_COMM_WORLD);
+            MPI_Send(&x,i,MPI_BYTE,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
             int tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (t2.tv_usec-t1.tv_usec);
             printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,tSend);
@@ -79,7 +79,7 @@ int main(int argc,char *argv[])
         for(i = 1; i < (MB + 1); i *=2)
         {
             gettimeofday(&t1,NULL);
-            MPI_Recv(&y,200,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+            MPI_Recv(&y,i,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
             gettimeofday(&t2,NULL);
             int tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (t2.tv_usec-t1.tv_usec);
             printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
