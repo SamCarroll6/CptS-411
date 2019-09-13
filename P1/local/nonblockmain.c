@@ -13,8 +13,7 @@
 #include <assert.h>
 #include <sys/time.h>
 
-//#define MB 1000000
-#define MB 512
+#define MB 1048576
 
 int main(int argc,char *argv[])
 {
@@ -41,8 +40,8 @@ int main(int argc,char *argv[])
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_CHAR,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
-            int tSend = (t2.tv_sec-t1.tv_sec) + (t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: sent message %s to rank %d; Send time %d millisec\n", rank,"bullshit",dest,tSend);
+            double tSend = (double)(t2.tv_sec-t1.tv_sec)*1000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,tSend);
         }
    } 
    else if (rank==0) {
@@ -56,8 +55,8 @@ int main(int argc,char *argv[])
             MPI_Irecv(&y,i,MPI_CHAR,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&request);
             MPI_Wait(&request, &status);
             gettimeofday(&t2,NULL);
-            int tRecv = (t2.tv_sec-t1.tv_sec) + (t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: received message %s from rank %d; Recv time %d millisec\n",rank,y,status.MPI_SOURCE,tRecv);
+            double tRecv = (double)(t2.tv_sec-t1.tv_sec)*1000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
         }
    }
    else if(rank==3) {
@@ -69,8 +68,8 @@ int main(int argc,char *argv[])
             gettimeofday(&t1,NULL);
             MPI_Send(&x,200,MPI_BYTE,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
-            int tSend = (t2.tv_sec-t1.tv_sec)*1000 + (t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: sent as message %s to rank %d; Send time %d millisec\n", rank,x,dest,tSend);
+            double tSend = (double)(t2.tv_sec-t1.tv_sec)*1000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            printf("Rank=%d: sent %d bytes to rank %d; Send time %d millisec\n", rank,i,dest,tSend);
         }
    } 
    else if (rank==2) {
@@ -82,8 +81,8 @@ int main(int argc,char *argv[])
             gettimeofday(&t1,NULL);
             MPI_Recv(&y,200,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
             gettimeofday(&t2,NULL);
-            int tRecv = (t2.tv_sec-t1.tv_sec)*1000 + (t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: received message %s from rank %d; Recv time %d millisec\n",rank,y,status.MPI_SOURCE,tRecv);
+            double tRecv = (double)(t2.tv_sec-t1.tv_sec)*1000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %d millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
         }
    }
 
