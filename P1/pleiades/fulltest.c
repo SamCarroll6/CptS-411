@@ -37,7 +37,7 @@ int main(int argc,char *argv[])
         int i = 0;
         for(i = 1; i < (MB + 1); i *= 2)
         {
-            memset(x,'a',sizeof(char)*i);
+            memset(x,'a',sizeof(char)*(i-1));
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_CHAR,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
@@ -66,7 +66,7 @@ int main(int argc,char *argv[])
         int i;
         for(i = 1; i < (MB + 1); i *=2)
         {
-            memset(x,'a',sizeof(char)*i);
+            memset(x,'a',sizeof(char)*(i-1));
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_BYTE,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
