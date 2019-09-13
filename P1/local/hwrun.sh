@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 if [ -z "$1" ]
 then
 	mpicc -o main ~/CptS-411/P1/pleiades/main.c
