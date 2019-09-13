@@ -37,11 +37,12 @@ int main(int argc,char *argv[])
         int i = 0;
         for(i = 1; i < (MB + 1); i *= 2)
         {
+            memset(x,'a',sizeof(char));
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_CHAR,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
             double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,tSend);
+            printf("Rank=%d: sent of %d bytes to rank %d; Send time %lf millisec\n",rank,i,dest,tSend);
         }
    } 
    else if (rank==0) {
@@ -65,6 +66,7 @@ int main(int argc,char *argv[])
         int i;
         for(i = 1; i < (MB + 1); i *=2)
         {
+            memset(x,'a',sizeof(char));
             gettimeofday(&t1,NULL);
             MPI_Send(&x,i,MPI_BYTE,dest,0,MPI_COMM_WORLD);
             gettimeofday(&t2,NULL);
