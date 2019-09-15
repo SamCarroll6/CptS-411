@@ -26,7 +26,7 @@
 #include <sys/time.h>
 
 // First value over 1 mb that is hit from doubling each iteration (since it doesn't come out to exactly 1MB)
-#define MB 1048576
+#define MB 4194304
 
 int main(int argc,char *argv[])
 {
