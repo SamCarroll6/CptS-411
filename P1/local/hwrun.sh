@@ -9,7 +9,7 @@ else
 	mpicc -o $1 ./$1.c
 fi
 
-if [ -z "$2"]
+if [ -z "$2" ]
 then
 	if [ -z "$1" ]
 	then

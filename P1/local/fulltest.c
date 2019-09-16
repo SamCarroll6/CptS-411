@@ -44,10 +44,12 @@ int main(int argc,char *argv[])
    assert(p>=2);
 
     if(rank==1) {
+        
         // Initialize send buffer
 		char x[MB] = {'a'};
 		int dest = 0;
         int i = 0;
+        MPI_Send(&x,1,MPI_CHAR,dest,0,MPI_COMM_WORLD);
         for(i = 1; i < (MB + 1); i *= 2)
         {
             //memset(x,'a',sizeof(char)*(i-1));
@@ -64,6 +66,8 @@ int main(int argc,char *argv[])
 		MPI_Status status;
         MPI_Request request;
         int i;
+        MPI_Irecv(&y,1,MPI_CHAR,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&request);
+        MPI_Wait(&request, &status);
         for(i = 1; i < (MB + 1); i *=2)
         {
             gettimeofday(&t1,NULL);
@@ -79,6 +83,7 @@ int main(int argc,char *argv[])
         char x[MB] = {'a'};
 		int dest = 2;
         int i;
+        MPI_Send(&x,1,MPI_CHAR,dest,0,MPI_COMM_WORLD);
         for(i = 1; i < (MB + 1); i *=2)
         {
             //memset(x,'a',sizeof(char)*(i-1));
@@ -93,6 +98,7 @@ int main(int argc,char *argv[])
    		char y[MB]={'a'};
 		MPI_Status status;
         int i;
+        MPI_Recv(&y,1,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
         for(i = 1; i < (MB + 1); i *=2)
         {
             gettimeofday(&t1,NULL);
