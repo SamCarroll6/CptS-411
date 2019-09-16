@@ -30,7 +30,7 @@
 // Multiplier, makes it easier to change what value I'm maxing out bytes at. 
 #define mul 4
 
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
 
    int rank,p;
@@ -44,7 +44,9 @@ int main(int argc,char *argv[])
    printf("Rank=%d: number of processes =%d\n",rank,p);
 
    assert(p>=2);
-
+    double sum = 0;
+    double average = 0;
+    int count = 0;
     if(rank==1) {
         
         // Initialize send buffer
@@ -54,13 +56,19 @@ int main(int argc,char *argv[])
         MPI_Send(&x,1,MPI_CHAR,dest,0,MPI_COMM_WORLD);
         for(i = 1; i < (mul*MB + 1); i *= 2)
         {
-            //memset(x,'a',sizeof(char)*(i-1));
-            gettimeofday(&t1,NULL);
-            MPI_Send(&x,i,MPI_CHAR,dest,0,MPI_COMM_WORLD);
-            gettimeofday(&t2,NULL);
-            // Returns time in milliseconds. 
-            double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: sent of %d bytes to rank %d; Send time %lf millisec\n",rank,i,dest,tSend);
+            sum = 0;
+            for(count = 0; count < 10; count++)
+            {
+                //memset(x,'a',sizeof(char)*(i-1));
+                gettimeofday(&t1,NULL);
+                MPI_Send(&x,i,MPI_CHAR,dest,0,MPI_COMM_WORLD);
+                gettimeofday(&t2,NULL);
+                // Returns time in milliseconds. 
+                double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+                sum+=tSend;
+            }
+            average = sum/10;
+            printf("Rank=%d: sent of %d bytes to rank %d; Send time %lf millisec\n",rank,i,dest,average);
         }
    } 
    else if (rank==0) {
@@ -72,13 +80,19 @@ int main(int argc,char *argv[])
         MPI_Wait(&request, &status);
         for(i = 1; i < (mul*MB + 1); i *=2)
         {
-            gettimeofday(&t1,NULL);
-            MPI_Irecv(&y,i,MPI_CHAR,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&request);
-            // Use MPI_Wait to stop everything until message is received. 
-            MPI_Wait(&request, &status);
-            gettimeofday(&t2,NULL);
-            double tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
+            sum = 0;
+            for(count = 0; count < 10; count++)
+            {
+                gettimeofday(&t1,NULL);
+                MPI_Irecv(&y,i,MPI_CHAR,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&request);
+                // Use MPI_Wait to stop everything until message is received. 
+                MPI_Wait(&request, &status);
+                gettimeofday(&t2,NULL);
+                double tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+                sum+=tRecv;
+            }
+            average = sum/10;
+            printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,average);
         }
    }
    else if(rank==3) {
@@ -88,12 +102,18 @@ int main(int argc,char *argv[])
         MPI_Send(&x,1,MPI_CHAR,dest,0,MPI_COMM_WORLD);
         for(i = 1; i < (mul*MB + 1); i *=2)
         {
+            sum = 0;
+            for(count = 0; count < 10; count++)
             //memset(x,'a',sizeof(char)*(i-1));
-            gettimeofday(&t1,NULL);
-            MPI_Send(&x,i,MPI_BYTE,dest,0,MPI_COMM_WORLD);
-            gettimeofday(&t2,NULL);
-            double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,tSend);
+            {
+                gettimeofday(&t1,NULL);
+                MPI_Send(&x,i,MPI_BYTE,dest,0,MPI_COMM_WORLD);
+                gettimeofday(&t2,NULL);
+                double tSend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+                sum+=tSend;
+            }
+            average = sum/10;
+            printf("Rank=%d: sent %d bytes to rank %d; Send time %lf millisec\n", rank,i,dest,average);
         }
    } 
    else if (rank==2) {
@@ -103,11 +123,17 @@ int main(int argc,char *argv[])
         MPI_Recv(&y,1,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
         for(i = 1; i < (mul*MB + 1); i *=2)
         {
-            gettimeofday(&t1,NULL);
-            MPI_Recv(&y,i,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
-            gettimeofday(&t2,NULL);
-            double tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-            printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,tRecv);
+            sum = 0;
+            for(count = 0; count < 10; count++)
+            {
+                gettimeofday(&t1,NULL);
+                MPI_Recv(&y,i,MPI_BYTE,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+                gettimeofday(&t2,NULL);
+                double tRecv = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+                sum+=tRecv;
+            }
+            average = sum/10;
+            printf("Rank=%d: received message %s of %d bytes from rank %d; Recv time %lf millisec\n",rank,y,i,status.MPI_SOURCE,average);
         }
    }
 
