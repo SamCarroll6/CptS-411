@@ -11,12 +11,13 @@ void printarray(int *arr, int n);
 int *generatearray(int n, int rank);
 int mpilibraryreduce(int *arr, int n);
 int sumarray(int *arr, int n);
+int naivereduce(int *arr, int n, int rank, int p);
 
 int main(int argc, char *argv[])
 {
     int rank,p;
     struct timeval t1,t2;
-    int n, *arr, sum, overflow;
+    int n, *arr, sumAR, sumN, sumMR, overflow;
 
     // Init and setup calls
     MPI_Init(&argc,&argv);
@@ -39,14 +40,17 @@ int main(int argc, char *argv[])
     {
         arr = generatearray(n/p + overflow, rank);
         printarray(arr, n/p + overflow);
-        sum = mpilibraryreduce(arr, n/p + overflow);
-        printf("Sum = %d\n", sum);
+        sumAR = mpilibraryreduce(arr, n/p + overflow);
+        sumN = naivereduce(arr, n/p + overflow, rank, p);
+        printf("SumAR = %d\n", sumAR);
+        printf("SumN = %d\n", sumN);
     }
     else
     {
         arr = generatearray(n/p, rank);
         printarray(arr, n/p);
         mpilibraryreduce(arr, n/p);
+        naivereduce(arr, n/p, rank, p);
     }
     //mpilibraryreduce(arrtest);
     //printf("Sum = %d\n", sum);
@@ -85,9 +89,28 @@ int myreduce(int *arr)
 
 }
 
-int naivereduce(int *arr, int rank)
+int naivereduce(int *arr, int n, int rank, int p)
 {
+    int sum = 0, recv;
+    MPI_Status status;
+    sum = sumarray(arr, n);
 
+    if(rank == 0)
+    {
+        MPI_Recv(&recv, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD, &status);
+        sum += recv;
+    }
+    else if(rank == (p - 1))
+    {
+        MPI_Send(&sum,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
+    }
+    else
+    {
+        MPI_Recv(&recv,1,MPI_INT,(rank + 1),MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+        sum += recv;
+        MPI_Send(&sum,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
+    }
+    return sum;
 }
 
 int sumarray(int *arr, int n)
