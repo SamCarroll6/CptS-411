@@ -4,6 +4,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <stdlib.h>
+#include <math.h>
 
 const int arrtest[10] = {1, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
@@ -12,6 +13,8 @@ int *generatearray(int n, int rank);
 int mpilibraryreduce(int *arr, int n);
 int sumarray(int *arr, int n);
 int naivereduce(int *arr, int n, int rank, int p);
+int numreceives(int rank);
+int myreduce(int *arr, int n, int rank, int p);
 
 int main(int argc, char *argv[])
 {
@@ -42,6 +45,7 @@ int main(int argc, char *argv[])
         printarray(arr, n/p + overflow);
         sumAR = mpilibraryreduce(arr, n/p + overflow);
         sumN = naivereduce(arr, n/p + overflow, rank, p);
+        myreduce(arr, n/p + overflow, rank, p);
         printf("SumAR = %d\n", sumAR);
         printf("SumN = %d\n", sumN);
     }
@@ -51,6 +55,11 @@ int main(int argc, char *argv[])
         printarray(arr, n/p);
         mpilibraryreduce(arr, n/p);
         naivereduce(arr, n/p, rank, p);
+        sumMR = myreduce(arr, n/p, rank, p);
+        if(rank == p - 1)
+        {
+            printf("SumMR = %d\n", sumMR);
+        }
     }
     //mpilibraryreduce(arrtest);
     //printf("Sum = %d\n", sum);
@@ -84,9 +93,64 @@ void printarray(int* arr, int n)
     printf("\n");
 }
 
-int myreduce(int *arr)
+int myreduce(int *arr, int n, int rank, int p)
 {
+    int sum = 0, recv;
+    int i = 0, recvnum, sendloc;
+    MPI_Status status;
+    //int logmax = (int)Log2(double(p)); 
+    sum = sumarray(arr, n);
+    recvnum = numreceives(rank);
+    printf("RecvNum = %d for Rank = %d\n", recvnum, rank);
+    for(i; i < recvnum; i++)
+    {
+        MPI_Recv(&recv, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+        sum += recv;
+    }
+    if(recvnum == 0)
+    {
+        sendloc = rank + 1;
+        MPI_Send(&sum,1,MPI_INT,sendloc,0,MPI_COMM_WORLD);
+    }
+    else if(rank != (p-1))
+    {
+        sendloc = rank << 1;
+        printf("sendloc = %d, rank = %d\n", sendloc, rank);
+        //MPI_Send(&sum,1,MPI_INT,sendloc,0,MPI_COMM_WORLD);
+    }
 
+
+
+
+
+    // if(rank % 2 == 0)
+    // {
+    //     MPI_Send(&sum,1,MPI_INT,rank + 1,0,MPI_COMM_WORLD);
+    // }
+    // else if(rank == p - 1)
+    // {
+    //     for(i; i < logmax; i++)
+    //     {
+    //         MPI_Recv(&recv, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+    //     }
+    // }
+    // else
+    // {
+
+    // }
+    return sum;
+}
+
+int numreceives(int rank)
+{
+    int i = 0; 
+    int hold = rank;
+    while(hold % 2 == 1)
+    {
+        i++;
+        hold = hold >> 1;
+    }
+    return i;
 }
 
 int naivereduce(int *arr, int n, int rank, int p)
