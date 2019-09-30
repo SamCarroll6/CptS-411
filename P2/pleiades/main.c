@@ -1,3 +1,13 @@
+/*
+ * Samuel Carroll
+ * CPTS 411
+ * HW 2
+ * October 3rd, 2019
+ *
+ * 
+ */
+
+
 #include <stdio.h>
 #include <mpi.h> 
 #include <assert.h>
@@ -5,8 +15,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
-
-const int arrtest[10] = {1, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 void printarray(int *arr, int n);
 int *generatearray(int n, int rank);
@@ -66,11 +74,19 @@ int main(int argc, char *argv[])
             printf("SumMR = %d\n", sumMR);
         }
     }
-    //mpilibraryreduce(arrtest);
-    //printf("Sum = %d\n", sum);
     MPI_Finalize();
 }
 
+/*
+ * Inputs: int n, int rank
+ * Output: integer array
+ * Function: The first input is an n value, this value is used to set the size 
+ *           of the array. We malloc an integer pointer the size n to dynamically
+ *           create an integer array. The rank input is used for a random seed value
+ *           I multiply my rank by the current time value in order to set a seed that is
+ *           unique to each processor to keep the arrays truly random. In the end the 
+ *           function returns the created array of random integers.
+ */
 int *generatearray(int n, int rank)
 {
     int *arr = (int *)malloc(sizeof(int) * n);
@@ -85,6 +101,12 @@ int *generatearray(int n, int rank)
     return arr;
 }
 
+/*
+ * Inputs: int* arr, int n
+ * Output: N/A
+ * Function: This is a simple print function so I know the values in my random 
+ *           arrays. It uses the n value to know how many values it will be printing.
+ */
 void printarray(int* arr, int n)
 {
     int i = 0;
@@ -98,6 +120,14 @@ void printarray(int* arr, int n)
     printf("\n");
 }
 
+/*
+ * Inputs: int *arr, int n, int rank, int p
+ * Output: integer
+ * Function: My reduce function, using hyperbolic reduction to reduce the given array. 
+ *           Starts by getting the (sum, product, or max) value of your local array that was
+ *           passed in as an argument. From there it either receives additional values or just 
+ *           sends off the bat depending on it's rank. 
+ */
 int myreduce(int *arr, int n, int rank, int p)
 {
     int sum = 0, recv;
@@ -125,6 +155,15 @@ int myreduce(int *arr, int n, int rank, int p)
     return sum;
 }
 
+/*
+ * Inputs: int rank
+ * Output: integer
+ * Function: This function is a helper function for the myreduce function above. 
+ *           It "counts" the number of 1's that occur in a binary value before the 
+ *           first 0 appears. It then returns that count value. This count is used
+ *           in a while loop in myreduce() in order to know how many times each process
+ *           needs to receive values before it's able to send it's value.
+ */
 int numreceives(int rank)
 {
     int i = 0; 
@@ -137,6 +176,15 @@ int numreceives(int rank)
     return i;
 }
 
+/*
+ * Inputs: int rank
+ * Output: integer
+ * Function: Similar to the above function this one is used to find which
+ *           rank the current process is sending it's values to next. For this
+ *           one it is finding the first zero to occur in the ranks binary representation.
+ *           it then returns the process rank with the first 0 bit flipped to a 1. 
+ *           This return value will be the same as the rank of the process you will send to.
+ */
 int senditto(int rank)
 {
     int i = 0;
@@ -149,6 +197,16 @@ int senditto(int rank)
     return rank + (1 << i);
 }
 
+/*
+ * Inputs: int *arr, int n, int rank, int p
+ * Output: integer
+ * Function: Simple reduce function using bus/array reduction.
+ *           It will simply calculate it's local arrays (sum, product, max)
+ *           and then send it's local value to the next rank. If it's not 
+ *           rank 0 it needs to receive and combine the received result to its local
+ *           result before sending. If it's the processor p-1 it will only receive and not
+ *           send, this processor returns its final value as the result.
+ */
 int naivereduce(int *arr, int n, int rank, int p)
 {
     int sum = 0, recv;
@@ -176,6 +234,11 @@ int naivereduce(int *arr, int n, int rank, int p)
     return sum;
 }
 
+/*
+ * Inputs: int *arr, int n
+ * Output: integer
+ * Function: Simply sums all of the values in an array.
+ */
 int sumarray(int *arr, int n)
 {
     int i = 0;
@@ -187,6 +250,13 @@ int sumarray(int *arr, int n)
     return sum;
 }
 
+/*
+ * Inputs: int *arr, int n
+ * Output: integer
+ * Function: The MPI libraries reduce implementation. I tried passing a whole array
+ *           but it only worked when a single value was sent so I get the (sum, product, max)
+ *           locally before I put it into the function. Returns the final calculated value.
+ */
 int mpilibraryreduce(int *arr, int n)
 {
     int sum, val;
