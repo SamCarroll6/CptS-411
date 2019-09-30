@@ -39,7 +39,8 @@ int main(int argc, char *argv[])
     {
         arr = generatearray(n/p + overflow, rank);
         printarray(arr, n/p + overflow);
-        mpilibraryreduce(arr, n/p + overflow);
+        sum = mpilibraryreduce(arr, n/p + overflow);
+        printf("Sum = %d\n", sum);
     }
     else
     {
@@ -105,6 +106,5 @@ int mpilibraryreduce(int *arr, int n)
     int sum, val;
     val = sumarray(arr, n);
     MPI_Allreduce(&val, &sum, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
-    printf("Sum = %d\n", sum);
-    //return sum;
+    return sum;
 }
