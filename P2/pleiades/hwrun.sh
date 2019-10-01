@@ -10,35 +10,71 @@ else
 fi
 
 
-if [ -z "$3" ]
+if [ -z "$4" ]
 then
-	if [ -z "$2" ]
+	if [ -z "$3" ]
 	then
-		if [ -z "$1" ]
+		if [ -z "$2" ]
 		then
-			mpirun -np 2 ~/CptS-411/P2/pleiades/main 8
-			rm main
+			if [ -z "$1" ]
+			then
+				mpirun -np 2 ~/CptS-411/P2/pleiades/main 8 0
+				rm main
+			else
+				mpirun -np 2 ./$1 8 0 
+				rm $1
+			fi
 		else
-			mpirun -np 2 ./$1 8
+			mpirun -np $2 ./$1 8 0
 			rm $1
 		fi
 	else
-		mpirun -np $2 ./$1 8
-		rm $1
+		if [ -z "$2" ]
+		then
+			if [ -z "$1" ]
+			then
+				mpirun -np 2 ~/CptS-411/P2/pleiades/main $3 0 
+				rm main
+			else
+				mpirun -np 2 ./$1 $3 0 
+				rm $1
+			fi
+		else
+			mpirun -np $2 ./$1 $3 0
+			rm $1
+		fi
 	fi
 else
-	if [ -z "$2" ]
+	if [ -z "$3" ]
 	then
-		if [ -z "$1" ]
+		if [ -z "$2" ]
 		then
-			mpirun -np 2 mpirun -np 2 ~/CptS-411/P2/pleiades/main $3
-			rm main
+			if [ -z "$1" ]
+			then
+				mpirun -np 2 ~/CptS-411/P2/pleiades/main 8 $4
+				rm main
+			else
+				mpirun -np 2 ./$1 8 $4
+				rm $1
+			fi
 		else
-			mpirun -np 2 ./$1 $3
+			mpirun -np $2 ./$1 8 $4
 			rm $1
 		fi
 	else
-		mpirun -np $2 ./$1 $3
-		rm $1
+		if [ -z "$2" ]
+		then
+			if [ -z "$1" ]
+			then
+				mpirun -np 2 ~/CptS-411/P2/pleiades/main $3 $4
+				rm main
+			else
+				mpirun -np 2 ./$1 $3 $4
+				rm $1
+			fi
+		else
+			mpirun -np $2 ./$1 $3 $4
+			rm $1
+		fi
 	fi
 fi

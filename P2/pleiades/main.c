@@ -15,22 +15,26 @@
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+
+#define SUM 0
+#define MAX 1
 
 void printarray(int *arr, int n);
 int *generatearray(int n, int rank);
-int mpilibraryreduce(int *arr, int n);
+int mpilibraryreduce(int *arr, int n, int flag);
 int sumarray(int *arr, int n);
-int naivereduce(int *arr, int n, int rank, int p);
+int naivereduce(int *arr, int n, int rank, int p, int flag);
 int numreceives(int rank);
 int senditto(int rank);
-int myreduce(int *arr, int n, int rank, int p);
+int myreduce(int *arr, int n, int rank, int p, int flag);
 
 int main(int argc, char *argv[])
 {
     int rank,p;
     struct timeval t1,t2;
-    int n, *arr, sumAR, sumN, sumMR, overflow;
-
+    int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag;
+    char printval[4];
     // Init and setup calls
     MPI_Init(&argc,&argv);
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
@@ -44,34 +48,41 @@ int main(int argc, char *argv[])
     assert((p & (p - 1)) == 0 && (p != 0));
 
     n = atoi(argv[1]);
+    flag = atoi(argv[2]);
 
     assert(n > p);
+    assert(flag >= 0);
+
+    if(flag > 1)
+        flag = 1;
+
+    strcpy(printval, flag ? "Max" : "Sum");
 
     overflow = n % p;
     if(rank == 0)
     {
         arr = generatearray(n/p + overflow, rank);
         printarray(arr, n/p + overflow);
-        sumAR = mpilibraryreduce(arr, n/p + overflow);
-        sumN = naivereduce(arr, n/p + overflow, rank, p);
-        sumMR = myreduce(arr, n/p + overflow, rank, p);
-        printf("SumAR = %d\n", sumAR);
-        printf("SumN = %d\n", sumN);
+        binaryAR = mpilibraryreduce(arr, n/p + overflow, flag);
+        binaryN = naivereduce(arr, n/p + overflow, rank, p, flag);
+        binaryMR = myreduce(arr, n/p + overflow, rank, p, flag);
+        printf("%s = %d\n", printval, binaryAR);
+        printf("%s = %d\n", printval, binaryN);
         if(p == 1)
         {
-            printf("SumMR = %d\n", sumMR);
+            printf("%s = %d\n", printval, binaryMR);
         }
     }
     else
     {
         arr = generatearray(n/p, rank);
         printarray(arr, n/p);
-        mpilibraryreduce(arr, n/p);
-        naivereduce(arr, n/p, rank, p);
-        sumMR = myreduce(arr, n/p, rank, p);
+        mpilibraryreduce(arr, n/p, flag);
+        naivereduce(arr, n/p, rank, p, flag);
+        binaryMR = myreduce(arr, n/p, rank, p, flag);
         if(rank == p - 1)
         {
-            printf("SumMR = %d\n", sumMR);
+            printf("%s = %d\n", printval, binaryMR);
         }
     }
     MPI_Finalize();
@@ -124,35 +135,50 @@ void printarray(int* arr, int n)
  * Inputs: int *arr, int n, int rank, int p
  * Output: integer
  * Function: My reduce function, using hyperbolic reduction to reduce the given array. 
- *           Starts by getting the (sum, product, or max) value of your local array that was
+ *           Starts by getting the (sum or max) value of your local array that was
  *           passed in as an argument. From there it either receives additional values or just 
  *           sends off the bat depending on it's rank. 
  */
-int myreduce(int *arr, int n, int rank, int p)
+int myreduce(int *arr, int n, int rank, int p, int flag)
 {
-    int sum = 0, recv;
+    int binary = 0, recv;
     int i = 0, recvnum, sendloc;
     MPI_Status status;
-    sum = sumarray(arr, n);
+    // if(flag == SUM)
+    // {
+    //    binary = sumarray(arr, n); 
+    // }
+    // else if(flag == MAX)
+    // {
+    //     binary = findmax(arr, n);
+    // }
+    binary = flag ? findmax(arr, n) : sumarray(arr, n);
     recvnum = numreceives(rank);
     if(p == 1)
     {
-        return sum;
+        return binary;
     }
     for(i; i < recvnum; i++)
     {
         MPI_Recv(&recv, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
-        sum += recv;
+        if(flag == SUM)
+        {
+            binary += recv;
+        }
+        else if(flag == MAX)
+        {
+            binary = recv > binary ? recv : binary;
+        }
     }
     if(rank != (p-1))
     {
         sendloc = senditto(rank);
         if(sendloc < p)
         {   
-            MPI_Send(&sum,1,MPI_INT,sendloc,0,MPI_COMM_WORLD);
+            MPI_Send(&binary,1,MPI_INT,sendloc,0,MPI_COMM_WORLD);
         }
     }
-    return sum;
+    return binary;
 }
 
 /*
@@ -201,37 +227,51 @@ int senditto(int rank)
  * Inputs: int *arr, int n, int rank, int p
  * Output: integer
  * Function: Simple reduce function using bus/array reduction.
- *           It will simply calculate it's local arrays (sum, product, max)
+ *           It will simply calculate it's local arrays (sum or max)
  *           and then send it's local value to the next rank. If it's not 
  *           rank 0 it needs to receive and combine the received result to its local
  *           result before sending. If it's the processor p-1 it will only receive and not
  *           send, this processor returns its final value as the result.
  */
-int naivereduce(int *arr, int n, int rank, int p)
+int naivereduce(int *arr, int n, int rank, int p, int flag)
 {
-    int sum = 0, recv;
+    int binary = 0, recv;
     MPI_Status status;
-    sum = sumarray(arr, n);
+    binary = flag ? findmax(arr, n) : sumarray(arr, n);
     if(p == 1)
     {
-        return sum;
+        return binary;
     }
     if(rank == 0)
     {
         MPI_Recv(&recv, 1, MPI_INT, rank + 1, 0, MPI_COMM_WORLD, &status);
-        sum += recv;
+        if(flag == SUM)
+        {
+            binary += recv;
+        }
+        else if(flag == MAX)
+        {
+            binary = recv > binary ? recv : binary;
+        }
     }
     else if(rank == (p - 1))
     {
-        MPI_Send(&sum,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
+        MPI_Send(&binary,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
     }
     else
     {
         MPI_Recv(&recv,1,MPI_INT,(rank + 1),MPI_ANY_TAG,MPI_COMM_WORLD,&status);
-        sum += recv;
-        MPI_Send(&sum,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
+        if(flag == SUM)
+        {
+            binary += recv;
+        }
+        else if(flag == MAX)
+        {
+            binary = recv > binary ? recv : binary;
+        }
+        MPI_Send(&binary,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
     }
-    return sum;
+    return binary;
 }
 
 /*
@@ -250,17 +290,31 @@ int sumarray(int *arr, int n)
     return sum;
 }
 
+int findmax(int *arr, int n)
+{
+    int i = 0, max = arr[0];
+    for(i; i < n; i++)
+    {
+        if(arr[i] > max)
+            max = arr[i];
+    }
+    return max;
+}
+
 /*
  * Inputs: int *arr, int n
  * Output: integer
  * Function: The MPI libraries reduce implementation. I tried passing a whole array
- *           but it only worked when a single value was sent so I get the (sum, product, max)
+ *           but it only worked when a single value was sent so I get the (sum or max)
  *           locally before I put it into the function. Returns the final calculated value.
  */
-int mpilibraryreduce(int *arr, int n)
+int mpilibraryreduce(int *arr, int n, int flag)
 {
-    int sum, val;
-    val = sumarray(arr, n);
-    MPI_Allreduce(&val, &sum, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
-    return sum;
+    int binary, val;
+    val = flag ? findmax(arr, n) : sumarray(arr, n);
+    if(flag == SUM)
+        MPI_Allreduce(&val, &binary, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+    else if(flag == MAX)
+        MPI_Allreduce(&val, &binary, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
+    return binary;
 }
