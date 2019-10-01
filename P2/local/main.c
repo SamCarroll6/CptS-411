@@ -107,7 +107,7 @@ int *generatearray(int n, int rank)
     srand((rank + 1) * time(NULL));
     for(i = 0; i < n; i++)
     {
-        arr[i] = (rand() % 100) + 1;
+        arr[i] = (rand() % 100000) + 1;
     }
     return arr;
 }
