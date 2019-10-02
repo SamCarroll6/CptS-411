@@ -180,7 +180,7 @@ int myreduce(int *arr, int n, int rank, int p, int flag)
         {   
             MPI_Send(&binary,1,MPI_INT,sendloc,0,MPI_COMM_WORLD);
         }
-        MPI_Recv(&recv, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
+        MPI_Recv(&recv, 1, MPI_INT, p-1, 0, MPI_COMM_WORLD, &status);
         binary = recv;
     }
     else
@@ -265,10 +265,6 @@ int naivereduce(int *arr, int n, int rank, int p, int flag)
         {
             binary = recv > binary ? recv : binary;
         }
-        for(i = 1; i < p; i++)
-        {
-            MPI_Send(&binary,1,MPI_INT,i,0,MPI_COMM_WORLD);
-        }
     }
     else if(rank == (p - 1))
     {
@@ -288,7 +284,17 @@ int naivereduce(int *arr, int n, int rank, int p, int flag)
             binary = recv > binary ? recv : binary;
         }
         MPI_Send(&binary,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
-        MPI_Recv(&recv,1,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+    }
+    if(rank == 0)
+    {
+        for(i = 1; i < p; i++)
+        {
+            MPI_Send(&binary,1,MPI_INT,i,0,MPI_COMM_WORLD);
+        }
+    }
+    else
+    {
+        MPI_Recv(&recv,1,MPI_INT,0,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
         binary = recv;
     }
     return binary;
