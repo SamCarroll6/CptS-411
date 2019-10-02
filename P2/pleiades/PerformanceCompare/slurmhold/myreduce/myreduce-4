@@ -1,0 +1,16 @@
+Rank=0: number of processes =4, overall array size = 1000
+My Reduce Rank=3: Send time 0.064700 millisec
+Rank=0: number of processes =4, overall array size = 2000
+My Reduce Rank=3: Send time 0.103100 millisec
+Rank=0: number of processes =4, overall array size = 4000
+My Reduce Rank=3: Send time 0.065400 millisec
+Rank=0: number of processes =4, overall array size = 8000
+My Reduce Rank=3: Send time 0.055100 millisec
+Rank=0: number of processes =4, overall array size = 16000
+My Reduce Rank=3: Send time 0.069700 millisec
+Rank=0: number of processes =4, overall array size = 32000
+My Reduce Rank=3: Send time 0.091900 millisec
+Rank=0: number of processes =4, overall array size = 64000
+My Reduce Rank=3: Send time 0.113500 millisec
+Rank=0: number of processes =4, overall array size = 640000
+My Reduce Rank=3: Send time 0.630000 millisec

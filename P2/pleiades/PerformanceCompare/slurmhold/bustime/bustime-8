@@ -1,0 +1,16 @@
+Rank=0: number of processes =8, overall array size = 1000
+Naive Reduce Rank=0: Send time 0.443800 millisec
+Rank=0: number of processes =8, overall array size = 2000
+Naive Reduce Rank=0: Send time 0.469500 millisec
+Rank=0: number of processes =8, overall array size = 4000
+Naive Reduce Rank=0: Send time 0.313100 millisec
+Rank=0: number of processes =8, overall array size = 8000
+Naive Reduce Rank=0: Send time 0.318900 millisec
+Rank=0: number of processes =8, overall array size = 16000
+Naive Reduce Rank=0: Send time 0.512600 millisec
+Rank=0: number of processes =8, overall array size = 32000
+Naive Reduce Rank=0: Send time 0.608000 millisec
+Rank=0: number of processes =8, overall array size = 64000
+Naive Reduce Rank=0: Send time 0.723100 millisec
+Rank=0: number of processes =8, overall array size = 640000
+Naive Reduce Rank=0: Send time 1.316200 millisec
