@@ -84,8 +84,9 @@ int main(int argc, char *argv[])
             tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
             if(rank == p - 1)
             {
-                printf("%s = %d\n", printval, binaryMR);
                 total += tsend;
+                printf("%s = %lf\n", printval, total);
+                
             }
         }
     }
