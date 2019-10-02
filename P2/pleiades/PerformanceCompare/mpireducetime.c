@@ -79,7 +79,8 @@ int main(int argc, char *argv[])
             mpilibraryreduce(arr, n/p, flag);
         }
     }
-    printf("Mpi reduce Rank=%d: Send time %lf millisec\n",rank,(total / 10));
+    if(rank == 0)
+        printf("Mpi reduce Rank=%d: Send time %lf millisec\n",rank,(total / 10));
     MPI_Finalize();
 }
 

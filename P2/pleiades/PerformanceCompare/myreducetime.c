@@ -89,7 +89,8 @@ int main(int argc, char *argv[])
             }
         }
     }
-    printf("My Reduce Rank=%d: Send time %lf millisec\n",rank,(total / 10));
+    if(rank == p-1 || p == 1)
+        printf("My Reduce Rank=%d: Send time %lf millisec\n",rank,(total / 10));
     MPI_Finalize();
 }
 

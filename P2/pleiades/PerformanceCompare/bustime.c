@@ -78,7 +78,8 @@ int main(int argc, char *argv[])
             naivereduce(arr, n/p, rank, p, flag);
         }
     }
-    printf("Naive Reduce Rank=%d: Send time %lf millisec\n",rank,total/10);
+    if(rank == 0)
+        printf("Naive Reduce Rank=%d: Send time %lf millisec\n",rank,total/10);
     MPI_Finalize();
 }
 
