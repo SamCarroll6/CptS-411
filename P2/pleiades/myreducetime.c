@@ -63,10 +63,14 @@ int main(int argc, char *argv[])
     if(rank == 0)
     {
         arr = generatearray(n/p + overflow, rank);
+        gettimeofday(&t1,NULL);
         binaryMR = myreduce(arr, n/p + overflow, rank, p, flag);
+        gettimeofday(&t2,NULL);
+        tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
         if(p == 1)
         {
             printf("%s = %d\n", printval, binaryMR);
+            printf("Rank=%d: Send time %lf millisec\n",rank,tsend);
         }
     }
     else
