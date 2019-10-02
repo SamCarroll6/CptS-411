@@ -1,0 +1,16 @@
+Rank=0: number of processes =32, overall array size = 1000
+Mpi reduce Rank=0: Send time 0.437400 millisec
+Rank=0: number of processes =32, overall array size = 2000
+Mpi reduce Rank=0: Send time 0.616300 millisec
+Rank=0: number of processes =32, overall array size = 4000
+Mpi reduce Rank=0: Send time 0.529500 millisec
+Rank=0: number of processes =32, overall array size = 8000
+Mpi reduce Rank=0: Send time 0.709800 millisec
+Rank=0: number of processes =32, overall array size = 16000
+Mpi reduce Rank=0: Send time 0.440000 millisec
+Rank=0: number of processes =32, overall array size = 32000
+Mpi reduce Rank=0: Send time 0.527100 millisec
+Rank=0: number of processes =32, overall array size = 64000
+Mpi reduce Rank=0: Send time 0.703400 millisec
+Rank=0: number of processes =32, overall array size = 640000
+Mpi reduce Rank=0: Send time 1.097200 millisec
