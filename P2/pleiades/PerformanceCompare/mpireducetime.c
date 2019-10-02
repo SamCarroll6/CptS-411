@@ -33,9 +33,9 @@ int myreduce(int *arr, int n, int rank, int p, int flag);
 int main(int argc, char *argv[])
 {
     struct timeval t1,t2;
-    double tsend;
+    double tsend, total = 0;
     int rank,p,i;
-    int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag, total = 0;
+    int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag;
     char printval[4];
     // Init and setup calls
     MPI_Init(&argc,&argv);

@@ -31,9 +31,9 @@ int myreduce(int *arr, int n, int rank, int p, int flag);
 
 int main(int argc, char *argv[])
 {
-    int rank,p,i,total = 0;
+    int rank,p,i;
     struct timeval t1,t2;
-    double tsend;
+    double tsend, total = 0;
     int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag;
     char printval[4];
     // Init and setup calls
