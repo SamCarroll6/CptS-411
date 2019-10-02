@@ -82,10 +82,11 @@ int main(int argc, char *argv[])
         binaryN = naivereduce(arr, n/p, rank, p, flag);
         binaryMR = myreduce(arr, n/p, rank, p, flag);
         printf("Naive Reduce %s = %d\n", printval, binaryN);
-        if(rank == p - 1)
-        {
-            printf("My Reduce %s = %d\n", printval, binaryMR);
-        }
+        printf("My Reduce %s = %d\n", printval, binaryMR);
+        // if(rank == p - 1)
+        // {
+        //     printf("My Reduce %s = %d\n", printval, binaryMR);
+        // }
     }
     MPI_Finalize();
 }
