@@ -66,11 +66,12 @@ int main(int argc, char *argv[])
         binaryAR = mpilibraryreduce(arr, n/p + overflow, flag);
         binaryN = naivereduce(arr, n/p + overflow, rank, p, flag);
         binaryMR = myreduce(arr, n/p + overflow, rank, p, flag);
-        printf("%s = %d\n", printval, binaryAR);
-        printf("%s = %d\n", printval, binaryN);
+        printf("All Reduce %s = %d\n", printval, binaryAR);
+        printf("Naive Reduce %s = %d\n", printval, binaryN);
+        printf("My Reduce %s = %d\n", printval, binaryMR);
         if(p == 1)
         {
-            printf("%s = %d\n", printval, binaryMR);
+            printf("My Reduce %s = %d\n", printval, binaryMR);
         }
     }
     else
@@ -78,11 +79,12 @@ int main(int argc, char *argv[])
         arr = generatearray(n/p, rank);
         printarray(arr, n/p);
         mpilibraryreduce(arr, n/p, flag);
-        naivereduce(arr, n/p, rank, p, flag);
+        binaryN = naivereduce(arr, n/p, rank, p, flag);
         binaryMR = myreduce(arr, n/p, rank, p, flag);
+        printf("Naive Reduce %s = %d\n", printval, binaryN);
         if(rank == p - 1)
         {
-            printf("%s = %d\n", printval, binaryMR);
+            printf("My Reduce %s = %d\n", printval, binaryMR);
         }
     }
     MPI_Finalize();
