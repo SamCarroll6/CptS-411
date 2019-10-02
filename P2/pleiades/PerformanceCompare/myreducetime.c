@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
     printf("my rank=%d\n",rank);
     if(rank == 0)
     {
-        printf("Rank=%d: number of processes =%d\n",rank,p);
+        printf("Rank=%d: number of processes =%d, overall array size = %d\n",rank,p,n);
     }
 
     assert((p & (p - 1)) == 0 && (p != 0));
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
             tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
             if(p == 1)
             {
-                printf("%s = %d\n", printval, binaryMR);
+                //printf("%s = %d\n", printval, binaryMR);
                 total += tsend;
             }
         }
@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
             if(rank == p - 1)
             {
                 total += tsend;
-                printf("%s = %lf\n", printval, total);
+                //printf("%s = %lf\n", printval, total);
                 
             }
         }
