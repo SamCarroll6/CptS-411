@@ -269,8 +269,6 @@ int naivereduce(int *arr, int n, int rank, int p, int flag)
     else if(rank == (p - 1))
     {
         MPI_Send(&binary,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
-        MPI_Recv(&recv,1,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
-        binary = recv;
     }
     else
     {
