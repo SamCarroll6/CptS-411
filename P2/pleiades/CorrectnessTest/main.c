@@ -103,11 +103,11 @@ int *generatearray(int n, int rank)
     int *arr = (int *)malloc(sizeof(int) * n);
     int i;
     assert(arr != NULL);
-
+    //srand((rank + 1) * time(NULL));
     for(i = 0; i < n; i++)
     {
-        srand(0);
-        arr[i] = (rand() % 100000) + 1;
+        arr[i] = (rank % 8) + 1;
+        //arr[i] = (rand() % 100000) + 1;
     }
     return arr;
 }
