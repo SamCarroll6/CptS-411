@@ -41,10 +41,6 @@ int main(int argc, char *argv[])
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
     MPI_Comm_size(MPI_COMM_WORLD,&p);
     printf("my rank=%d\n",rank);
-    if(rank == 0)
-    {
-        printf("Rank=%d: number of processes =%d, overall array size = %d\n",rank,p,n);
-    }
 
     assert((p & (p - 1)) == 0 && (p != 0));
 
@@ -53,6 +49,11 @@ int main(int argc, char *argv[])
 
     assert(n > p);
     assert(flag >= 0);
+
+    if(rank == 0)
+    {
+        printf("Rank=%d: number of processes =%d, overall array size = %d\n",rank,p,n);
+    }
 
     if(flag > 1)
         flag = 1;
