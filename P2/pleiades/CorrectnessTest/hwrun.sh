@@ -4,9 +4,9 @@ set -e
 
 if [ -z "$1" ]
 then
-	mpicc -o main ~/CptS-411/P2/pleiades/main.c
+	mpicc -o main ./main.c
 else
-	mpicc -o $1 ~/CptS-411/P2/pleiades/$1.c
+	mpicc -o $1 ./$1.c
 fi
 
 
@@ -18,7 +18,7 @@ then
 		then
 			if [ -z "$1" ]
 			then
-				mpirun -np 2 ~/CptS-411/P2/pleiades/main 8 0
+				mpirun -np 2 ./main 8 0
 				#rm main
 			else
 				mpirun -np 2 ./$1 8 0 
@@ -33,7 +33,7 @@ then
 		then
 			if [ -z "$1" ]
 			then
-				mpirun -np 2 ~/CptS-411/P2/pleiades/main $3 0 
+				mpirun -np 2 ./main $3 0 
 				#rm main
 			else
 				mpirun -np 2 ./$1 $3 0 
@@ -51,7 +51,7 @@ else
 		then
 			if [ -z "$1" ]
 			then
-				mpirun -np 2 ~/CptS-411/P2/pleiades/main 8 $4
+				mpirun -np 2 ./main 8 $4
 				#rm main
 			else
 				mpirun -np 2 ./$1 8 $4
@@ -66,7 +66,7 @@ else
 		then
 			if [ -z "$1" ]
 			then
-				mpirun -np 2 ~/CptS-411/P2/pleiades/main $3 $4
+				mpirun -np 2 ./main $3 $4
 				#rm main
 			else
 				mpirun -np 2 ./$1 $3 $4
