@@ -106,10 +106,7 @@ int *generatearray(int n, int rank)
 
     for(i = 0; i < n; i++)
     {
-        if(i % 8 == 0)
-        {
-            srand(rank % 2);
-        }
+        srand(0);
         arr[i] = (rand() % 100000) + 1;
     }
     return arr;
