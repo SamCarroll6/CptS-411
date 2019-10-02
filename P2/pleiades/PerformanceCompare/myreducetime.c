@@ -31,7 +31,7 @@ int myreduce(int *arr, int n, int rank, int p, int flag);
 
 int main(int argc, char *argv[])
 {
-    int rank,p;
+    int rank,p,i,total = 0;
     struct timeval t1,t2;
     double tsend;
     int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag;
@@ -60,32 +60,36 @@ int main(int argc, char *argv[])
     strcpy(printval, flag ? "Max" : "Sum");
 
     overflow = n % p;
-    if(rank == 0)
+    for(i = 0; i < 10; i++)
     {
-        arr = generatearray(n/p + overflow, rank);
-        gettimeofday(&t1,NULL);
-        binaryMR = myreduce(arr, n/p + overflow, rank, p, flag);
-        gettimeofday(&t2,NULL);
-        tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-        if(p == 1)
+        if(rank == 0)
         {
-            printf("%s = %d\n", printval, binaryMR);
-            printf("Rank=%d: Send time %lf millisec\n",rank,tsend);
+            arr = generatearray(n/p + overflow, rank);
+            gettimeofday(&t1,NULL);
+            binaryMR = myreduce(arr, n/p + overflow, rank, p, flag);
+            gettimeofday(&t2,NULL);
+            tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            if(p == 1)
+            {
+                printf("%s = %d\n", printval, binaryMR);
+                total += tsend;
+            }
+        }
+        else
+        {
+            arr = generatearray(n/p, rank);
+            gettimeofday(&t1,NULL);
+            binaryMR = myreduce(arr, n/p, rank, p, flag);
+            gettimeofday(&t2,NULL);
+            tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            if(rank == p - 1)
+            {
+                printf("%s = %d\n", printval, binaryMR);
+                total += tsend;
+            }
         }
     }
-    else
-    {
-        arr = generatearray(n/p, rank);
-        gettimeofday(&t1,NULL);
-        binaryMR = myreduce(arr, n/p, rank, p, flag);
-        gettimeofday(&t2,NULL);
-        tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-        if(rank == p - 1)
-        {
-            printf("%s = %d\n", printval, binaryMR);
-            printf("Rank=%d: Send time %lf millisec\n",rank,tsend);
-        }
-    }
+    printf("My Reduce Rank=%d: Send time %lf millisec\n",rank,(total / 10));
     MPI_Finalize();
 }
 

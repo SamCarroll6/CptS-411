@@ -34,8 +34,8 @@ int main(int argc, char *argv[])
 {
     struct timeval t1,t2;
     double tsend;
-    int rank,p;
-    int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag;
+    int rank,p,i;
+    int n, *arr, binaryAR, binaryN, binaryMR, overflow, flag, total = 0;
     char printval[4];
     // Init and setup calls
     MPI_Init(&argc,&argv);
@@ -61,21 +61,25 @@ int main(int argc, char *argv[])
     strcpy(printval, flag ? "Max" : "Sum");
 
     overflow = n % p;
-    if(rank == 0)
+    for(i = 0; i < 10; i++)
     {
-        arr = generatearray(n/p + overflow, rank);
-        gettimeofday(&t1,NULL);
-        binaryAR = mpilibraryreduce(arr, n/p + overflow, flag);
-        gettimeofday(&t2,NULL);
-        tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
-        printf("%s = %d\n", printval, binaryAR);
-        printf("Rank=%d: Send time %lf millisec\n",rank,tsend);
+        if(rank == 0)
+        {
+            arr = generatearray(n/p + overflow, rank);
+            gettimeofday(&t1,NULL);
+            binaryAR = mpilibraryreduce(arr, n/p + overflow, flag);
+            gettimeofday(&t2,NULL);
+            tsend = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+            total += tsend;
+            printf("%s = %d\n", printval, binaryAR);
+        }
+        else
+        {
+            arr = generatearray(n/p, rank);
+            mpilibraryreduce(arr, n/p, flag);
+        }
     }
-    else
-    {
-        arr = generatearray(n/p, rank);
-        mpilibraryreduce(arr, n/p, flag);
-    }
+    printf("Mpi reduce Rank=%d: Send time %lf millisec\n",rank,(total / 10));
     MPI_Finalize();
 }
 
