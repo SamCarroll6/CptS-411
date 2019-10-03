@@ -66,11 +66,12 @@ int main(int argc, char *argv[])
         binaryAR = mpilibraryreduce(arr, n/p + overflow, flag);
         binaryN = naivereduce(arr, n/p + overflow, rank, p, flag);
         binaryMR = myreduce(arr, n/p + overflow, rank, p, flag);
-        printf("%s = %d\n", printval, binaryAR);
-        printf("%s = %d\n", printval, binaryN);
+        printf("All Reduce %s = %d\n", printval, binaryAR);
+        printf("Naive Reduce %s = %d\n", printval, binaryN);
+        printf("My Reduce %s = %d\n", printval, binaryMR);
         if(p == 1)
         {
-            printf("%s = %d\n", printval, binaryMR);
+            printf("My Reduce %s = %d\n", printval, binaryMR);
         }
     }
     else
@@ -78,12 +79,14 @@ int main(int argc, char *argv[])
         arr = generatearray(n/p, rank);
         printarray(arr, n/p);
         mpilibraryreduce(arr, n/p, flag);
-        naivereduce(arr, n/p, rank, p, flag);
+        binaryN = naivereduce(arr, n/p, rank, p, flag);
         binaryMR = myreduce(arr, n/p, rank, p, flag);
-        if(rank == p - 1)
-        {
-            printf("%s = %d\n", printval, binaryMR);
-        }
+        printf("Naive Reduce %s = %d\n", printval, binaryN);
+        printf("My Reduce %s = %d\n", printval, binaryMR);
+        // if(rank == p - 1)
+        // {
+        //     printf("My Reduce %s = %d\n", printval, binaryMR);
+        // }
     }
     MPI_Finalize();
 }
@@ -103,10 +106,11 @@ int *generatearray(int n, int rank)
     int *arr = (int *)malloc(sizeof(int) * n);
     int i;
     assert(arr != NULL);
+
     srand((rank + 1) * time(NULL));
     for(i = 0; i < n; i++)
     {
-        arr[i] = (rand() % 1000000) + 1;
+        arr[i] = (rand() % 100000) + 1;
     }
     return arr;
 }
@@ -176,6 +180,15 @@ int myreduce(int *arr, int n, int rank, int p, int flag)
         {   
             MPI_Send(&binary,1,MPI_INT,sendloc,0,MPI_COMM_WORLD);
         }
+        MPI_Recv(&recv, 1, MPI_INT, p-1, 0, MPI_COMM_WORLD, &status);
+        binary = recv;
+    }
+    else
+    {
+        for(i = 0; i < p - 1; i++)
+        {
+            MPI_Send(&binary,1,MPI_INT,i,0,MPI_COMM_WORLD);
+        }
     }
     return binary;
 }
@@ -234,7 +247,7 @@ int senditto(int rank)
  */
 int naivereduce(int *arr, int n, int rank, int p, int flag)
 {
-    int binary = 0, recv;
+    int binary = 0, recv, i;
     MPI_Status status;
     binary = flag ? findmax(arr, n) : sumarray(arr, n);
     if(p == 1)
@@ -269,6 +282,18 @@ int naivereduce(int *arr, int n, int rank, int p, int flag)
             binary = recv > binary ? recv : binary;
         }
         MPI_Send(&binary,1,MPI_INT,(rank-1),0,MPI_COMM_WORLD);
+    }
+    if(rank == 0)
+    {
+        for(i = 1; i < p; i++)
+        {
+            MPI_Send(&binary,1,MPI_INT,i,0,MPI_COMM_WORLD);
+        }
+    }
+    else
+    {
+        MPI_Recv(&recv,1,MPI_INT,0,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+        binary = recv;
     }
     return binary;
 }
