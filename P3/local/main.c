@@ -23,7 +23,8 @@
 
 void serialOutput(int seed, int A, int B, int P, int n);
 void matrixOutput(int seed, int A, int B, int P, int n);
-void matrixMul(int Left[2][2], int Right[2][2], int Prime);
+void matrixMul(int Left[2][2], int Right[2][2], int PB[2][2], int P);
+void copymatrix(int src[2][2], int dest[2][2]);
 
 int main(int argc, char *argv[])
 {
@@ -79,26 +80,40 @@ void serialOutput(int seed, int A, int B, int P, int n)
 
 void matrixOutput(int seed, int A, int B, int P, int n)
 {
-    int M[2][2], **ret, M_next[2][2];
-    int x_i, x_iM1 = seed;
+    int M[2][2], **ret, M_next[2][2], x_iMat[2][2];
+    int x_0Mat[2][2];
     int i = 1;
     M[0][0] = A;
     M[0][1] = B;
     M[1][0] = 0;
     M[1][1] = 1;
-    M_next[0][0] = A;
-    M_next[0][1] = B;
-    M_next[1][0] = 0;
-    M_next[1][1] = 1;
+    x_0Mat[0][0] = seed;
+    x_0Mat[1][0] = 1;
+    x_0Mat[0][1] = 0;
+    x_0Mat[1][1] = 0;
+    copymatrix(M, M_next);
+    printf("%d %d %d %d\n", M[0][0], M[0][1], M[1][0], M[1][1]);
     for(i = 1; i < n; i++)
     {
-        matrixMul(M, M_next, P);
-        printf("%d %d\n", M_next[0][0], M_next[0][1]);
+        matrixMul(x_0Mat, M_next, x_iMat, P);
+        printf("x_%d = %d\n", i, x_iMat[0][0]);
+        matrixMul(M_next, M, M_next, P);
     }
 }
 
+void copymatrix(int src[2][2], int dest[2][2])
+{
+    int i = 0, j = 0;
+    for(i = 0; i < 2; i++)
+    {
+        for(j = 0; j < 2; j++)
+        {
+            dest[i][j] = src[i][j];
+        }
+    }
+}
 
-void matrixMul(int Left[2][2], int Right[2][2], int Prime)
+void matrixMul(int Left[2][2], int Right[2][2], int PB[2][2], int P)
 {
     int g = 0, j = 0, k = 0, sum = 0;
     int ret[2][2];
@@ -109,17 +124,17 @@ void matrixMul(int Left[2][2], int Right[2][2], int Prime)
             for(k = 0; k < 2; k++)
             {
                // printf("%d\n", Right[g][k]);
-                sum = sum + Left[g][k] * Right[k][j];
+               sum = sum + Left[k][g] * Right[j][k];
             }
-           ret[g][j] = sum % Prime;
-           sum = 0;
+            ret[j][g] = sum % P;
+            sum = 0;
         }
     }
     for(g = 0; g < 2; g++)
     {
         for(j = 0; j < 2; j++)
         {
-            Right[g][j] = ret[g][j];
+            PB[g][j] = ret[g][j];
         }
     }
    // return ret;
