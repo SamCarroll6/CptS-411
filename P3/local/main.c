@@ -20,11 +20,16 @@
 #define SUM 0
 #define MAX 1
 
+typedef struct MatArray
+{
+    int M[2][2];
+} MatArr;
 
 void serialOutput(int seed, int A, int B, int P, int n);
 void matrixOutput(int seed, int A, int B, int P, int n);
 void matrixMul(int Left[2][2], int Right[2][2], int PB[2][2], int P);
 void copymatrix(int src[2][2], int dest[2][2]);
+void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int rank);
 
 int main(int argc, char *argv[])
 {
@@ -45,19 +50,25 @@ int main(int argc, char *argv[])
 
     assert(n > (2 * Prime));
 
-    printf("seed = %d\n", seed);
-    printf("A = %d\n", A);
-    printf("B = %d\n", B);
-    printf("P = %d\n", Prime);
-    printf("n = %d\n", n);
+    // printf("seed = %d\n", seed);
+    // printf("A = %d\n", A);
+    // printf("B = %d\n", B);
+    // printf("P = %d\n", Prime);
+    // printf("n = %d\n", n);
 
-    printf("my rank=%d\n",rank);
+    // printf("my rank=%d\n",rank);
+
+    int offset = n % p;
+
     if(rank == 0)
     {
         printf("Number of processes =%d\n", p);
-        serialOutput(seed, A, B, Prime, n);
-        matrixOutput(seed, A, B, Prime, n);
+        ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p) + offset, rank);
+        //serialOutput(seed, A, B, Prime, n);
+        //matrixOutput(seed, A, B, Prime, n);
     }
+    else
+        ParallelOutput(seed, A, B, Prime, (rank * (n/p)) + offset, (n/p), rank);
 
     // assert((p & (p - 1)) == 0 && (p != 0));
 
@@ -65,6 +76,27 @@ int main(int argc, char *argv[])
 
     MPI_Finalize();
 }
+
+void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int rank)
+{
+    MatArr *x_loc = (MatArr*)malloc(sizeof(MatArr) * nsize);
+    int M_naught[2][2], M_loc[2][2];
+    int i = 0;
+    M_naught[0][0] = 1;
+    M_naught[0][1] = 0;
+    M_naught[1][0] = 0;
+    M_naught[1][1] = 1;
+    copymatrix(M_naught, M_loc);
+    for(i = 0; i < nsize; i++)
+    {
+        x_loc[i].M[0][0] = A;
+        x_loc[i].M[0][1] = B;
+        x_loc[i].M[1][0] = 0;
+        x_loc[i].M[1][1] = 1;
+        matrixMul(M_loc, x_loc[i].M, M_loc, P);
+    }
+}
+
 
 void serialOutput(int seed, int A, int B, int P, int n)
 {
