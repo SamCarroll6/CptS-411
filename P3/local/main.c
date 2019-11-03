@@ -20,7 +20,10 @@
 #define SUM 0
 #define MAX 1
 
+
 void serialOutput(int seed, int A, int B, int P, int n);
+void matrixOutput(int seed, int A, int B, int P, int n);
+void matrixMul(int Left[2][2], int Right[2][2], int Prime);
 
 int main(int argc, char *argv[])
 {
@@ -52,6 +55,7 @@ int main(int argc, char *argv[])
     {
         printf("Number of processes =%d\n", p);
         serialOutput(seed, A, B, Prime, n);
+        matrixOutput(seed, A, B, Prime, n);
     }
 
     // assert((p & (p - 1)) == 0 && (p != 0));
@@ -70,4 +74,53 @@ void serialOutput(int seed, int A, int B, int P, int n)
         printf("x_%d = %d\n", i, x_i);
         x_iM1 = x_i;
     }
+}
+
+
+void matrixOutput(int seed, int A, int B, int P, int n)
+{
+    int M[2][2], **ret, M_next[2][2];
+    int x_i, x_iM1 = seed;
+    int i = 1;
+    M[0][0] = A;
+    M[0][1] = B;
+    M[1][0] = 0;
+    M[1][1] = 1;
+    M_next[0][0] = A;
+    M_next[0][1] = B;
+    M_next[1][0] = 0;
+    M_next[1][1] = 1;
+    for(i = 1; i < n; i++)
+    {
+        matrixMul(M, M_next, P);
+        printf("%d %d\n", M_next[0][0], M_next[0][1]);
+    }
+}
+
+
+void matrixMul(int Left[2][2], int Right[2][2], int Prime)
+{
+    int g = 0, j = 0, k = 0, sum = 0;
+    int ret[2][2];
+    for(g = 0; g < 2; g++)
+    {
+        for(j = 0; j < 2; j++)
+        {
+            for(k = 0; k < 2; k++)
+            {
+               // printf("%d\n", Right[g][k]);
+                sum = sum + Left[g][k] * Right[k][j];
+            }
+           ret[g][j] = sum % Prime;
+           sum = 0;
+        }
+    }
+    for(g = 0; g < 2; g++)
+    {
+        for(j = 0; j < 2; j++)
+        {
+            Right[g][j] = ret[g][j];
+        }
+    }
+   // return ret;
 }
