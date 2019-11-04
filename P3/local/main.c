@@ -161,12 +161,12 @@ void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, i
     x_0Mat[1][0] = 1;
     x_0Mat[0][1] = 0;
     x_0Mat[1][1] = 0;
-    if(rank == 0)
-        matrixMul(M_next, M, M_next, P);
+    //if(rank == 0)
+    matrixMul(M_next, M, M_next, P);
     for(i = 0; i < n; i++)
     {
         matrixMul(x_0Mat, M_next, x_iMat, P);
-        printf("%d x_%d = %d\n", rank, (rank*(n)) + i, x_iMat[0][0]);
+        printf("%d x_%d = %d\n", rank, (rank*(n)) + i + 1, x_iMat[0][0]);
         matrixMul(M_next, M, M_next, P);
     }
 }
