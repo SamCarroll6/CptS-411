@@ -99,6 +99,7 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
         //copymatrix(M_loc, x_loc[i].M);
         //printf("i = %d %d %d %d %d\n", i, x_loc[i].M[0][0], x_loc[i].M[0][1], x_loc[i].M[1][0], x_loc[i].M[1][1]);
     }
+    printf("rank = %d A = %d B = %d\n", rank, M_loc[0][0], M_loc[0][1]);
     parallelPrefix(M_loc, p, rank, P);
     //printf("i = %d %d %d %d %d\n", i, x_loc[rank].M[0][0], x_loc[rank].M[0][1], x_loc[rank].M[1][0], x_loc[rank].M[1][1]);
     //matrixOutputPar(seed, A, B, x_loc[rank].M[0][0], x_loc[rank].M[0][1], P, nsize, rank);
@@ -112,6 +113,10 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
     MPI_Status status;
     int i = 0, mate;
     int log2p = (log(p - 1) / log(2));
+    // l[0][0] = 1;
+    // l[0][1] = 0;
+    // l[1][0] = 0;
+    // l[1][1] = 1;
     copymatrix(M_loc, l);
     copymatrix(M_loc, g);
    // printf("log2P = %d\n", log2p);
@@ -129,18 +134,18 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
             MPI_Recv(&g_remote,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
             MPI_Send(&g[0][0],4,MPI_INT,mate,0,MPI_COMM_WORLD);
         }
+        matrixMul(g, g_remote, g, Prime);
         if(mate < rank)
         {
             matrixMul(l, g_remote, l, Prime);
         }
-        matrixMul(g, g_remote, g, Prime);
     }
     copymatrix(l, M_loc);
 }
 
 void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, int rank)
 {
-    int M[2][2], **ret, M_next[2][2], x_iMat[2][2];
+    int M[2][2], M_next[2][2], x_iMat[2][2];
     int x_0Mat[2][2];
     int i = 1;
     M[0][0] = A;
