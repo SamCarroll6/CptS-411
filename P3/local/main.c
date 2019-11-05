@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
     // printf("my rank=%d\n",rank);
 
     //int offset = n % p;
+    ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
 
     if(rank == 0)
     {
@@ -71,7 +72,6 @@ int main(int argc, char *argv[])
         serialOutput(seed, A, B, Prime, n);
         matrixOutput(seed, A, B, Prime, n);
     }    
-    ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
 
     // assert((p & (p - 1)) == 0 && (p != 0));
 
@@ -110,7 +110,7 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
 
 void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B)
 {
-    int l[2][2], g[2][2], g_remote[2][2];
+    int l[2][2], g[2][2], g_remote[2][2], hold[2][2];
     MPI_Status status;
     int i = 0, mate;
     //int log2p = (log(p) / log(2));
@@ -119,29 +119,41 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B)
     l[0][1] = B;
     l[1][0] = 0;
     l[1][1] = 1;
+    g_remote[1][0] = 0;
+    g_remote[1][1] = 1;
    // copymatrix(M_loc, l);
+   // printf("0 rank = %d A = %d B = %d\n", rank, M_loc[0][0], M_loc[0][1]);
     copymatrix(M_loc, g);
+   // printf("1 rank = %d A = %d B = %d %d %d\n", rank, g[0][0], g[0][1], g[1][0], g[1][1]);
    // printf("log2P = %d\n", log2p);
     for(i = 0; i < log2p; i++)
     {
+       // printf("0 %d %d G %d %d %d %d\n", i, rank, g[0][0], g[0][1], g[1][0], g[1][1]);
+
         mate = rank ^ (1 << (i));
-        //printf("%d mate => %d %d\n", rank, mate, i);
-        if(rank > mate)
-        {
-            MPI_Send(&g[0][0],4,MPI_INT,mate,0,MPI_COMM_WORLD);
-            MPI_Recv(&g_remote,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
-        }
-        else
-        {
-            MPI_Recv(&g_remote,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
-            MPI_Send(&g[0][0],4,MPI_INT,mate,0,MPI_COMM_WORLD);
-        }
+        //printf("I %d Rank %d Mate %d\n", i, rank, mate);
+        MPI_Sendrecv(&g[0][0],2,MPI_INT,mate,0,&g_remote,2,MPI_INT,mate,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+        // if(rank > mate)
+        // {
+        //     MPI_Send(&g[0][0],4,MPI_INT,mate,0,MPI_COMM_WORLD);
+        //     MPI_Recv(&g_remote,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+        // }
+        // else
+        // {
+        //     MPI_Recv(&g_remote,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+        //     MPI_Send(&g[0][0],4,MPI_INT,mate,0,MPI_COMM_WORLD);
+        // }
+       // printf("1 %d %d G %d %d %d %d\n", i, rank, g_remote[0][0], g_remote[0][1], g_remote[1][0], g_remote[1][1]);
+
         if(mate < rank)
         {
             matrixMul(l, g_remote, l, Prime);
         }
         matrixMul(g, g_remote, g, Prime);
+       // printf("2 %d G %d %d %d %d\n", rank, g_remote[0][0], g_remote[0][1], g_remote[1][0], g_remote[1][1]);
+
     }
+    //printf("%d G %d %d %d %d\n", rank, g[0][0], g[0][1], g[1][0], g[1][1]);
     copymatrix(l, M_loc);
 }
 
@@ -167,7 +179,7 @@ void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, i
     for(i = 0; i < n; i++)
     {
         matrixMul(x_0Mat, M_next, x_iMat, P);
-        printf("%d x_%d = %d\n", rank, (rank*(n)) + i + 1, x_iMat[0][0]);
+        printf("x_%d = %d\n", (rank*(n)) + i + 1, x_iMat[0][0]);
         matrixMul(M_next, M, M_next, P);
     }
 }
