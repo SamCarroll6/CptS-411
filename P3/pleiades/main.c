@@ -142,10 +142,18 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
         }
         matrixMul(g, g_remote, g, Prime);
     }
-    if(rank != p - 1)
+    if(rank != p - 1 && rank != 0)
     {
         MPI_Send(&l[0][0],4,MPI_INT,rank+1,0,MPI_COMM_WORLD);
         MPI_Recv(&l,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+    }
+    else if(rank == p-1)
+    {
+        MPI_Recv(&l,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
+    }
+    else if(rank == 0)
+    {
+        MPI_Send(&l[0][0],4,MPI_INT,rank+1,0,MPI_COMM_WORLD);
     }
     copymatrix(l, M_loc);
 }
