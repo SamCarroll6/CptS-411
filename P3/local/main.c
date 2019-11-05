@@ -104,7 +104,7 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
     //matrixOutputPar(seed, A, B, x_loc[rank].M[0][0], x_loc[rank].M[0][1], P, nsize, rank);
     //printf("rank = %d A = %d B = %d\n", rank, M_loc[0][0], M_loc[0][1]);
 
-    matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
+ //   matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
 
 }
 
@@ -113,12 +113,12 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
     int l[2][2], g[2][2], g_remote[2][2];
     MPI_Status status;
     int i = 0, mate;
-    int log2p = (log(p - 1) / log(2));
-    l[0][0] = 1;
-    l[0][1] = 0;
-    l[1][0] = 0;
-    l[1][1] = 1;
-    //copymatrix(M_loc, l);
+    int log2p = (log(p) / log(2));
+    // l[0][0] = 1;
+    // l[0][1] = 0;
+    // l[1][0] = 0;
+    // l[1][1] = 1;
+    copymatrix(M_loc, l);
     copymatrix(M_loc, g);
    // printf("log2P = %d\n", log2p);
     for(i = 0; i < log2p; i++)
@@ -140,8 +140,10 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
             matrixMul(l, g_remote, l, Prime);
         }
         matrixMul(g, g_remote, g, Prime);
+        printf("%d %d %d A %d B %d\n", rank, i, mate, l[0][0], l[0][1]);
     }
     copymatrix(l, M_loc);
+    printf("%d A %d B %d\n", rank, l[0][0], l[0][1]);
 }
 
 void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, int rank)
@@ -162,7 +164,7 @@ void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, i
     x_0Mat[0][1] = 0;
     x_0Mat[1][1] = 0;
     //if(rank == 0)
-    matrixMul(M_next, M, M_next, P);
+    //matrixMul(M_next, M, M_next, P);
     for(i = 0; i < n; i++)
     {
         matrixMul(x_0Mat, M_next, x_iMat, P);
