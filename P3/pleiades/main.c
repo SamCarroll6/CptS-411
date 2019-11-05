@@ -114,7 +114,7 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
     MPI_Status status;
     int i = 0, mate;
    // int log2p = (log2(p) / log2(2));
-   int log2p = 3;
+   int log2p = 2;
     // l[0][0] = 1;
     // l[0][1] = 0;
     // l[1][0] = 0;
