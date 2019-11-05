@@ -25,6 +25,7 @@ typedef struct MatArray
     int M[2][2];
 } MatArr;
 
+int logfunc(int log);
 void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, int rank);
 void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B);
 void serialOutput(int seed, int A, int B, int P, int n);
@@ -112,7 +113,8 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B)
     int l[2][2], g[2][2], g_remote[2][2];
     MPI_Status status;
     int i = 0, mate;
-    int log2p = (log(p) / log(2));
+    //int log2p = (log(p) / log(2));
+    int log2p = logfunc(p);
     l[0][0] = A;
     l[0][1] = B;
     l[1][0] = 0;
@@ -241,4 +243,14 @@ void matrixMul(int Left[2][2], int Right[2][2], int PB[2][2], int P)
         }
     }
    // return ret;
+}
+
+int logfunc(int log)
+{
+    int i = 0;
+    while(log = log >> 1)
+    {
+        i++;
+    }
+    return i;
 }
