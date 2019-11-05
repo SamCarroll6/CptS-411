@@ -26,7 +26,7 @@ typedef struct MatArray
 } MatArr;
 
 void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, int rank);
-void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime);
+void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B);
 void serialOutput(int seed, int A, int B, int P, int n);
 void matrixOutput(int seed, int A, int B, int P, int n);
 void matrixMul(int Left[2][2], int Right[2][2], int PB[2][2], int P);
@@ -50,7 +50,8 @@ int main(int argc, char *argv[])
     Prime = atoi(argv[4]);
     n = atoi(argv[5]);
 
-    assert(n > (2 * Prime));
+    assert(n > (2 * p));
+    assert(n%p == 0);
 
     // printf("seed = %d\n", seed);
     // printf("A = %d\n", A);
@@ -60,17 +61,16 @@ int main(int argc, char *argv[])
 
     // printf("my rank=%d\n",rank);
 
-    int offset = n % p;
+    //int offset = n % p;
 
     if(rank == 0)
     {
         printf("Number of processes =%d\n", p);
-        ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p) + offset, rank, p);
-        // serialOutput(seed, A, B, Prime, n);
-        //matrixOutput(seed, A, B, Prime, n);
-    }
-    else
-        ParallelOutput(seed, A, B, Prime, (rank * (n/p)) + offset, (n/p), rank, p);
+        //ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p) + offset, rank, p);
+        serialOutput(seed, A, B, Prime, n);
+        matrixOutput(seed, A, B, Prime, n);
+    }    
+    ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
 
     // assert((p & (p - 1)) == 0 && (p != 0));
 
@@ -99,26 +99,25 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
         //copymatrix(M_loc, x_loc[i].M);
         //printf("i = %d %d %d %d %d\n", i, x_loc[i].M[0][0], x_loc[i].M[0][1], x_loc[i].M[1][0], x_loc[i].M[1][1]);
     }
-    parallelPrefix(M_loc, p, rank, P);
-    //printf("i = %d %d %d %d %d\n", i, x_loc[rank].M[0][0], x_loc[rank].M[0][1], x_loc[rank].M[1][0], x_loc[rank].M[1][1]);
-    //matrixOutputPar(seed, A, B, x_loc[rank].M[0][0], x_loc[rank].M[0][1], P, nsize, rank);
-    //printf("rank = %d A = %d B = %d\n", rank, M_loc[0][0], M_loc[0][1]);
+   // printf("rank = %d A = %d B = %d\n", rank, M_loc[0][0], M_loc[0][1]);
 
- //   matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
+    parallelPrefix(M_loc, p, rank, P, A, B);
+
+    matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
 
 }
 
-void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
+void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B)
 {
     int l[2][2], g[2][2], g_remote[2][2];
     MPI_Status status;
     int i = 0, mate;
     int log2p = (log(p) / log(2));
-    // l[0][0] = 1;
-    // l[0][1] = 0;
-    // l[1][0] = 0;
-    // l[1][1] = 1;
-    copymatrix(M_loc, l);
+    l[0][0] = A;
+    l[0][1] = B;
+    l[1][0] = 0;
+    l[1][1] = 1;
+   // copymatrix(M_loc, l);
     copymatrix(M_loc, g);
    // printf("log2P = %d\n", log2p);
     for(i = 0; i < log2p; i++)
@@ -140,10 +139,8 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
             matrixMul(l, g_remote, l, Prime);
         }
         matrixMul(g, g_remote, g, Prime);
-        printf("%d %d %d A %d B %d\n", rank, i, mate, l[0][0], l[0][1]);
     }
     copymatrix(l, M_loc);
-    printf("%d A %d B %d\n", rank, l[0][0], l[0][1]);
 }
 
 void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, int rank)
@@ -176,7 +173,7 @@ void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, i
 void serialOutput(int seed, int A, int B, int P, int n)
 {
     int i = 0, x_i, x_iM1 = seed;
-    for(i = 1; i < n; i++)
+    for(i = 1; i <= n; i++)
     {
         x_i = (A * x_iM1 + B) % P;
         printf("x_%d = %d\n", i, x_i);
@@ -198,7 +195,7 @@ void matrixOutput(int seed, int A, int B, int P, int n)
     x_0Mat[0][1] = 0;
     x_0Mat[1][1] = 0;
     copymatrix(M, M_next);
-    for(i = 1; i < n; i++)
+    for(i = 1; i <= n; i++)
     {
         matrixMul(x_0Mat, M_next, x_iMat, P);
         printf("x_%d = %d\n", i, x_iMat[0][0]);
