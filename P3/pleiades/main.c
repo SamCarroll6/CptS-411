@@ -114,7 +114,7 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
     MPI_Status status;
     int i = 0, mate;
    // int log2p = (log2(p) / log2(2));
-   int log2p = 2;
+   int log2p = 3;
     // l[0][0] = 1;
     // l[0][1] = 0;
     // l[1][0] = 0;
@@ -141,6 +141,11 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
             matrixMul(l, g_remote, l, Prime);
         }
         matrixMul(g, g_remote, g, Prime);
+    }
+    if(rank != p - 1)
+    {
+        MPI_Send(&l[0][0],4,MPI_INT,rank+1,0,MPI_COMM_WORLD);
+        MPI_Recv(&l,4,MPI_INT,MPI_ANY_SOURCE,MPI_ANY_TAG,MPI_COMM_WORLD,&status);
     }
     copymatrix(l, M_loc);
 }
