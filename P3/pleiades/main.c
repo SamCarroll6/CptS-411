@@ -104,7 +104,7 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
     //matrixOutputPar(seed, A, B, x_loc[rank].M[0][0], x_loc[rank].M[0][1], P, nsize, rank);
     //printf("rank = %d A = %d B = %d\n", rank, M_loc[0][0], M_loc[0][1]);
 
- //   matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
+    matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
 
 }
 
@@ -141,10 +141,8 @@ void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime)
             matrixMul(l, g_remote, l, Prime);
         }
         matrixMul(g, g_remote, g, Prime);
-        printf("%d %d %d A %d B %d\n", rank, i, mate, l[0][0], l[0][1]);
     }
     copymatrix(l, M_loc);
-    printf("%d A %d B %d\n", rank, l[0][0], l[0][1]);
 }
 
 void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, int rank)
