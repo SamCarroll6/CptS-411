@@ -1,0 +1,836 @@
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0000:30725] *** Process received signal ***
+[n0000:30725] Signal: Aborted (6)
+[n0000:30725] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0000:30727] *** Process received signal ***
+[n0000:30727] Signal: Aborted (6)
+[n0000:30727] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0000:30729] *** Process received signal ***
+[n0000:30729] Signal: Aborted (6)
+[n0000:30729] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0000:30726] *** Process received signal ***
+[n0000:30726] Signal: Aborted (6)
+[n0000:30726] Signal code:  (-6)
+[n0000:30731] *** Process received signal ***
+[n0000:30731] Signal: Aborted (6)
+[n0000:30731] Signal code:  (-6)
+[n0000:30724] *** Process received signal ***
+[n0000:30724] Signal: Aborted (6)
+[n0000:30724] Signal code:  (-6)
+[n0000:30730] *** Process received signal ***
+[n0000:30730] Signal: Aborted (6)
+[n0000:30730] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13702] *** Process received signal ***
+[n0001:13702] Signal: Aborted (6)
+[n0001:13702] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03588] *** Process received signal ***
+[n0005:03588] Signal: Aborted (6)
+[n0005:03588] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13703] *** Process received signal ***
+[n0001:13703] Signal: Aborted (6)
+[n0001:13703] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13696] *** Process received signal ***
+[n0001:13696] Signal: Aborted (6)
+[n0001:13696] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13697] *** Process received signal ***
+[n0001:13697] Signal: Aborted (6)
+[n0001:13697] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0002:18338] *** Process received signal ***
+[n0002:18338] Signal: Aborted (6)
+[n0002:18338] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13699] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0004:05335] *** Process received signal ***
+[n0004:05335] Signal: Aborted (6)
+[n0004:05335] Signal code:  (-6)
+[n0000:30725] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7ff372bda330]
+[n0000:30725] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7ff372837c37]
+[n0000:30725] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7ff37283b028]
+[n0000:30725] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7ff372830bf6]
+[n0000:30725] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7ff372830ca2]
+[n0000:30725] [ 5] ./main() [0x400abc]
+[n0000:30725] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7ff372822f45]
+[n0000:30725] [ 7] ./main() [0x4008d9]
+[n0000:30725] *** End of error message ***
+[n0000:30727] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f66262f0330]
+[n0000:30727] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f6625f4dc37]
+[n0000:30727] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f6625f51028]
+[n0000:30727] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f6625f46bf6]
+[n0000:30727] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f6625f46ca2]
+[n0000:30727] [ 5] ./main() [0x400abc]
+[n0000:30727] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f6625f38f45]
+[n0000:30727] [ 7] ./main() [0x4008d9]
+[n0000:30727] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0002:18339] *** Process received signal ***
+[n0002:18339] Signal: Aborted (6)
+[n0002:18339] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0004:05338] *** Process received signal ***
+[n0004:05338] Signal: Aborted (6)
+[n0004:05338] Signal code:  (-6)
+[n0000:30729] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f6798f90330]
+[n0000:30729] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f6798bedc37]
+[n0000:30729] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f6798bf1028]
+[n0000:30729] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f6798be6bf6]
+[n0000:30729] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f6798be6ca2]
+[n0000:30729] [ 5] ./main() [0x400abc]
+[n0000:30729] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f6798bd8f45]
+[n0000:30729] [ 7] ./main() [0x4008d9]
+[n0000:30729] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13700] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0007:03066] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0002:18344] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04795] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0003:15452] *** Process received signal ***
+[n0003:15452] Signal: Aborted (6)
+[n0003:15452] Signal code:  (-6)
+[n0000:30724] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f18f258a330]
+[n0000:30724] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f18f21e7c37]
+[n0000:30724] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f18f21eb028]
+[n0000:30724] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f18f21e0bf6]
+[n0000:30724] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f18f21e0ca2]
+[n0000:30724] [ 5] ./main() [0x400abc]
+[n0000:30724] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f18f21d2f45]
+[n0000:30724] [ 7] ./main() [0x4008d9]
+[n0000:30724] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0001:13701] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0002:18340] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04794] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0003:15453] *** Process received signal ***
+[n0003:15453] Signal: Aborted (6)
+[n0003:15453] Signal code:  (-6)
+[n0000:30731] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7efea4584330]
+[n0000:30731] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7efea41e1c37]
+[n0000:30731] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7efea41e5028]
+[n0000:30731] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7efea41dabf6]
+[n0000:30731] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7efea41daca2]
+[n0000:30731] [ 5] ./main() [0x400abc]
+[n0000:30731] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7efea41ccf45]
+[n0000:30731] [ 7] ./main() [0x4008d9]
+[n0000:30731] *** End of error message ***
+[n0000:30730] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f1877bee330]
+[n0000:30730] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f187784bc37]
+[n0000:30730] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f187784f028]
+[n0000:30730] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f1877844bf6]
+[n0000:30730] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f1877844ca2]
+[n0000:30730] [ 5] ./main() [0x400abc]
+[n0000:30730] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f1877836f45]
+[n0000:30730] [ 7] ./main() [0x4008d9]
+[n0000:30730] *** End of error message ***
+[n0001:13698] *** Process received signal ***
+[n0001:13698] Signal: Aborted (6)
+[n0001:13698] Signal code:  (-6)
+[n0007:03063] *** Process received signal ***
+[n0007:03063] Signal: Aborted (6)
+[n0007:03063] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0002:18342] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04797] *** Process received signal ***
+[n0004:05340] *** Process received signal ***
+[n0004:05340] Signal: Aborted (6)
+[n0004:05340] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0003:15454] *** Process received signal ***
+[n0003:15454] Signal: Aborted (6)
+[n0003:15454] Signal code:  (-6)
+[n0001:13700] Signal: Aborted (6)
+[n0001:13700] Signal code:  (-6)
+[n0007:03065] *** Process received signal ***
+[n0007:03065] Signal: Aborted (6)
+[n0007:03065] Signal code:  (-6)
+[n0002:18342] Signal: Aborted (6)
+[n0002:18342] Signal code:  (-6)
+[n0006:04795] Signal: Aborted (6)
+[n0006:04795] Signal code:  (-6)
+[n0004:05341] *** Process received signal ***
+[n0004:05341] Signal: Aborted (6)
+[n0004:05341] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0003:15455] *** Process received signal ***
+[n0003:15455] Signal: Aborted (6)
+[n0003:15455] Signal code:  (-6)
+[n0001:13701] Signal: Aborted (6)
+[n0001:13701] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0007:03068] *** Process received signal ***
+[n0007:03068] Signal: Aborted (6)
+[n0007:03068] Signal code:  (-6)
+[n0002:18344] Signal: Aborted (6)
+[n0002:18344] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04791] *** Process received signal ***
+[n0006:04791] Signal: Aborted (6)
+[n0006:04791] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0004:05336] *** Process received signal ***
+[n0004:05336] Signal: Aborted (6)
+[n0004:05336] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0003:15456] *** Process received signal ***
+[n0003:15456] Signal: Aborted (6)
+[n0003:15456] Signal code:  (-6)
+[n0003:15451] *** Process received signal ***
+[n0003:15451] Signal: Aborted (6)
+[n0003:15451] Signal code:  (-6)
+[n0001:13699] Signal: Aborted (6)
+[n0001:13699] Signal code:  (-6)
+[n0007:03066] Signal: Aborted (6)
+[n0007:03066] Signal code:  (-6)
+[n0002:18340] Signal: Aborted (6)
+[n0002:18340] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0004:05337] *** Process received signal ***
+[n0001:13703] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f85b6976330]
+[n0001:13703] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f85b65d3c37]
+[n0001:13703] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f85b65d7028]
+[n0001:13703] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f85b65ccbf6]
+[n0001:13703] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f85b65ccca2]
+[n0001:13703] [ 5] ./main() [0x400abc]
+[n0001:13703] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f85b65bef45]
+[n0001:13703] [ 7] ./main() [0x4008d9]
+[n0001:13703] *** End of error message ***
+[n0007:03064] *** Process received signal ***
+[n0007:03064] Signal: Aborted (6)
+[n0007:03064] Signal code:  (-6)
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04797] Signal: Aborted (6)
+[n0006:04797] Signal code:  (-6)
+[n0004:05337] Signal: Aborted (6)
+[n0004:05337] Signal code:  (-6)
+[n0003:15451] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fba3ace7330]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04794] Signal: Aborted (6)
+[n0006:04794] Signal code:  (-6)
+[n0004:05335] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f697ac44330]
+[n0003:15455] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fc5420fa330]
+[n0003:15455] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fc541d57c37]
+[n0003:15455] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fc541d5b028]
+[n0003:15455] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fc541d50bf6]
+[n0003:15455] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fc541d50ca2]
+[n0003:15455] [ 5] ./main() [0x400abc]
+[n0003:15455] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fc541d42f45]
+[n0003:15455] [ 7] ./main() [0x4008d9]
+[n0003:15455] *** End of error message ***
+[n0001:13696] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f35a1b5b330]
+[n0001:13696] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f35a17b8c37]
+[n0001:13696] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f35a17bc028]
+[n0001:13696] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f35a17b1bf6]
+[n0001:13696] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f35a17b1ca2]
+[n0001:13696] [ 5] ./main() [0x400abc]
+[n0001:13696] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f35a17a3f45]
+[n0001:13696] [ 7] ./main() [0x4008d9]
+[n0001:13696] *** End of error message ***
+[n0007:03062] *** Process received signal ***
+[n0001:13697] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f7e6df44330]
+[n0001:13697] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f7e6dba1c37]
+[n0001:13697] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f7e6dba5028]
+[n0001:13697] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f7e6db9abf6]
+[n0001:13697] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f7e6db9aca2]
+[n0001:13697] [ 5] ./main() [0x400abc]
+[n0001:13697] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f7e6db8cf45]
+[n0001:13697] [ 7] ./main() [0x4008d9]
+[n0001:13697] *** End of error message ***
+[n0007:03062] Signal: Aborted (6)
+[n0007:03062] Signal code:  (-6)
+[n0002:18341] *** Process received signal ***
+[n0002:18341] Signal: Aborted (6)
+[n0002:18341] Signal code:  (-6)
+[n0006:04792] *** Process received signal ***
+[n0006:04792] Signal: Aborted (6)
+[n0006:04792] Signal code:  (-6)
+[n0004:05338] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fefbae6c330]
+[n0004:05338] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fefbaac9c37]
+[n0004:05338] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fefbaacd028]
+[n0004:05338] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fefbaac2bf6]
+[n0004:05338] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fefbaac2ca2]
+[n0004:05338] [ 5] ./main() [0x400abc]
+[n0004:05338] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fefbaab4f45]
+[n0004:05338] [ 7] ./main() [0x4008d9]
+[n0004:05338] *** End of error message ***
+[n0003:15454] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f881271d330]
+[n0003:15454] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f881237ac37]
+[n0003:15454] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f881237e028]
+[n0003:15454] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f8812373bf6]
+[n0003:15454] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f8812373ca2]
+[n0003:15454] [ 5] ./main() [0x400abc]
+[n0003:15454] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f8812365f45]
+[n0003:15454] [ 7] ./main() [0x4008d9]
+[n0003:15454] *** End of error message ***
+[n0001:13702] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f543e27f330]
+[n0002:18345] *** Process received signal ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04798] *** Process received signal ***
+[n0004:05341] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f0b0941d330]
+[n0004:05341] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f0b0907ac37]
+[n0004:05341] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f0b0907e028]
+[n0004:05341] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f0b09073bf6]
+[n0004:05341] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f0b09073ca2]
+[n0004:05341] [ 5] ./main() [0x400abc]
+[n0004:05341] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f0b09065f45]
+[n0003:15452] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fa9760ca330]
+[n0003:15452] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fa975d27c37]
+[n0003:15452] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fa975d2b028]
+[n0003:15452] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fa975d20bf6]
+[n0003:15452] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fa975d20ca2]
+[n0003:15452] [ 5] ./main() [0x400abc]
+[n0003:15452] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fa975d12f45]
+[n0000:30726] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7efd83678330]
+[n0000:30726] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7efd832d5c37]
+[n0000:30726] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7efd832d9028]
+[n0000:30726] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7efd832cebf6]
+[n0000:30726] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7efd832ceca2]
+[n0000:30726] [ 5] ./main() [0x400abc]
+[n0000:30726] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7efd832c0f45]
+[n0000:30726] [ 7] ./main() [0x4008d9]
+[n0000:30726] *** End of error message ***
+[n0001:13700] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f9199679330]
+[n0002:18343] *** Process received signal ***
+[n0002:18343] Signal: Aborted (6)
+[n0002:18343] Signal code:  (-6)
+[n0006:04798] Signal: Aborted (6)
+[n0006:04798] Signal code:  (-6)
+[n0004:05340] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fbcb0b0d330]
+[n0004:05340] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fbcb076ac37]
+[n0004:05340] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fbcb076e028]
+[n0004:05340] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fbcb0763bf6]
+[n0004:05340] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fbcb0763ca2]
+[n0004:05340] [ 5] ./main() [0x400abc]
+[n0004:05340] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fbcb0755f45]
+[n0004:05340] [ 7] ./main() [0x4008d9]
+[n0004:05340] *** End of error message ***
+[n0003:15452] [ 7] ./main() [0x4008d9]
+[n0003:15452] *** End of error message ***
+[n0002:18345] Signal: Aborted (6)
+[n0002:18345] Signal code:  (-6)
+[n0006:04793] *** Process received signal ***
+[n0004:05336] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f0f5b009330]
+[n0004:05336] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f0f5ac66c37]
+[n0004:05336] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f0f5ac6a028]
+[n0004:05336] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f0f5ac5fbf6]
+[n0004:05336] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f0f5ac5fca2]
+[n0004:05336] [ 5] ./main() [0x400abc]
+[n0004:05336] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f0f5ac51f45]
+[n0004:05336] [ 7] ./main() [0x4008d9]
+[n0004:05336] *** End of error message ***
+[n0003:15456] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fe20224b330]
+[n0003:15456] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fe201ea8c37]
+[n0003:15456] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fe201eac028]
+[n0003:15456] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fe201ea1bf6]
+[n0003:15456] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fe201ea1ca2]
+[n0001:13702] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f543dedcc37]
+[n0001:13702] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f543dee0028]
+[n0001:13702] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f543ded5bf6]
+[n0001:13702] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f543ded5ca2]
+[n0001:13702] [ 5] ./main() [0x400abc]
+[n0001:13702] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f543dec7f45]
+[n0001:13702] [ 7] ./main() [0x4008d9]
+[n0001:13702] *** End of error message ***
+[n0001:13699] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f48b9362330]
+[n0001:13699] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f48b8fbfc37]
+[n0001:13699] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f48b8fc3028]
+[n0001:13699] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f48b8fb8bf6]
+[n0001:13699] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f48b8fb8ca2]
+[n0001:13699] [ 5] ./main() [0x400abc]
+[n0001:13699] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f48b8faaf45]
+[n0001:13699] [ 7] ./main() [0x4008d9]
+[n0001:13699] *** End of error message ***
+[n0002:18339] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fb278e92330]
+[n0006:04793] Signal: Aborted (6)
+[n0006:04793] Signal code:  (-6)
+[n0004:05341] [ 7] ./main() [0x4008d9]
+[n0004:05341] *** End of error message ***
+[n0003:15456] [ 5] ./main() [0x400abc]
+[n0003:15456] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fe201e93f45]
+[n0003:15456] [ 7] ./main() [0x4008d9]
+[n0003:15456] *** End of error message ***
+[n0001:13701] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fd2c714e330]
+[n0001:13701] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fd2c6dabc37]
+[n0001:13701] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fd2c6daf028]
+[n0001:13701] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fd2c6da4bf6]
+[n0001:13701] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fd2c6da4ca2]
+[n0001:13701] [ 5] ./main() [0x400abc]
+[n0001:13701] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fd2c6d96f45]
+[n0001:13701] [ 7] ./main() [0x4008d9]
+[n0001:13701] *** End of error message ***
+[n0002:18344] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f1e9af32330]
+[n0002:18344] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f1e9ab8fc37]
+[n0002:18344] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f1e9ab93028]
+[n0002:18344] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f1e9ab88bf6]
+[n0002:18344] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f1e9ab88ca2]
+[n0002:18344] [ 5] ./main() [0x400abc]
+[n0002:18344] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f1e9ab7af45]
+[n0002:18344] [ 7] ./main() [0x4008d9]
+[n0002:18344] *** End of error message ***
+[n0006:04794] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f18d24f2330]
+[n0004:05335] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f697a8a1c37]
+[n0003:15451] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fba3a944c37]
+[n0001:13698] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fcec3927330]
+[n0001:13698] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fcec3584c37]
+[n0001:13698] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fcec3588028]
+[n0001:13698] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fcec357dbf6]
+[n0001:13698] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fcec357dca2]
+[n0001:13698] [ 5] ./main() [0x400abc]
+[n0001:13698] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fcec356ff45]
+[n0001:13698] [ 7] ./main() [0x4008d9]
+[n0001:13698] *** End of error message ***
+[n0002:18338] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f4b06752330]
+[n0002:18338] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f4b063afc37]
+[n0002:18338] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f4b063b3028]
+[n0002:18338] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f4b063a8bf6]
+[n0002:18338] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f4b063a8ca2]
+[n0002:18338] [ 5] ./main() [0x400abc]
+[n0002:18338] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f4b0639af45]
+[n0002:18338] [ 7] ./main() [0x4008d9]
+[n0002:18338] *** End of error message ***
+[n0006:04797] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f3759530330]
+[n0006:04797] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f375918dc37]
+[n0006:04797] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f3759191028]
+[n0006:04797] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f3759186bf6]
+[n0006:04797] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f3759186ca2]
+[n0006:04797] [ 5] ./main() [0x400abc]
+[n0006:04797] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f3759178f45]
+[n0006:04797] [ 7] ./main() [0x4008d9]
+[n0006:04797] *** End of error message ***
+[n0004:05337] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fa41bf12330]
+[n0004:05337] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fa41bb6fc37]
+[n0004:05337] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fa41bb73028]
+[n0004:05337] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fa41bb68bf6]
+[n0004:05337] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fa41bb68ca2]
+[n0004:05337] [ 5] ./main() [0x400abc]
+[n0004:05337] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fa41bb5af45]
+[n0004:05337] [ 7] ./main() [0x4008d9]
+[n0004:05337] *** End of error message ***
+[n0003:15451] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fba3a948028]
+[n0001:13700] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f91992d6c37]
+[n0002:18339] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fb278aefc37]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03582] *** Process received signal ***
+[n0005:03582] Signal: Aborted (6)
+[n0005:03582] Signal code:  (-6)
+[n0005:03582] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fe8adaf1330]
+[n0005:03582] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fe8ad74ec37]
+[n0005:03582] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fe8ad752028]
+[n0005:03582] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fe8ad747bf6]
+[n0005:03582] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fe8ad747ca2]
+[n0005:03582] [ 5] ./main() [0x400abc]
+[n0005:03582] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fe8ad739f45]
+[n0005:03582] [ 7] ./main() [0x4008d9]
+[n0005:03582] *** End of error message ***
+[n0006:04792] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f708009b330]
+[n0006:04792] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f707fcf8c37]
+[n0006:04792] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f707fcfc028]
+[n0006:04792] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f707fcf1bf6]
+[n0006:04792] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f707fcf1ca2]
+[n0006:04792] [ 5] ./main() [0x400abc]
+[n0006:04792] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f707fce3f45]
+[n0006:04792] [ 7] ./main() [0x4008d9]
+[n0006:04792] *** End of error message ***
+[n0004:05335] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f697a8a5028]
+[n0003:15451] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fba3a93dbf6]
+[n0001:13700] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f91992da028]
+[n0002:18340] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7ffaf5540330]
+[n0002:18340] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7ffaf519dc37]
+[n0002:18340] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7ffaf51a1028]
+[n0002:18340] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7ffaf5196bf6]
+[n0002:18340] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7ffaf5196ca2]
+[n0002:18340] [ 5] ./main() [0x400abc]
+[n0002:18340] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7ffaf5188f45]
+[n0006:04791] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fe3e4027330]
+[n0006:04791] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fe3e3c84c37]
+[n0006:04791] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fe3e3c88028]
+[n0006:04791] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fe3e3c7dbf6]
+[n0006:04791] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fe3e3c7dca2]
+[n0006:04791] [ 5] ./main() [0x400abc]
+[n0006:04791] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fe3e3c6ff45]
+[n0006:04791] [ 7] ./main() [0x4008d9]
+[n0006:04791] *** End of error message ***
+[n0004:05335] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f697a89abf6]
+[n0003:15451] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fba3a93dca2]
+[n0001:13700] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f91992cfbf6]
+[n0002:18339] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fb278af3028]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03583] *** Process received signal ***
+[n0005:03583] Signal: Aborted (6)
+[n0005:03583] Signal code:  (-6)
+[n0005:03583] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fadd5af5330]
+[n0005:03583] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fadd5752c37]
+[n0005:03583] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fadd5756028]
+[n0005:03583] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fadd574bbf6]
+[n0005:03583] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fadd574bca2]
+[n0005:03583] [ 5] ./main() [0x400abc]
+[n0005:03583] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fadd573df45]
+[n0005:03583] [ 7] ./main() [0x4008d9]
+[n0005:03583] *** End of error message ***
+[n0006:04795] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7ff1ee5e0330]
+[n0006:04795] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7ff1ee23dc37]
+[n0006:04795] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7ff1ee241028]
+[n0006:04795] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7ff1ee236bf6]
+[n0006:04795] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7ff1ee236ca2]
+[n0006:04795] [ 5] ./main() [0x400abc]
+[n0006:04795] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7ff1ee228f45]
+[n0006:04795] [ 7] ./main() [0x4008d9]
+[n0006:04795] *** End of error message ***
+[n0004:05335] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f697a89aca2]
+[n0003:15451] [ 5] ./main() [0x400abc]
+[n0001:13700] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f91992cfca2]
+[n0002:18342] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fe70203b330]
+[n0002:18342] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fe701c98c37]
+[n0002:18342] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fe701c9c028]
+[n0002:18342] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fe701c91bf6]
+[n0002:18342] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fe701c91ca2]
+[n0002:18342] [ 5] ./main() [0x400abc]
+[n0002:18342] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fe701c83f45]
+[n0002:18342] [ 7] ./main() [0x4008d9]
+[n0002:18342] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03584] *** Process received signal ***
+[n0005:03584] Signal: Aborted (6)
+[n0005:03584] Signal code:  (-6)
+[n0005:03584] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f9251bcc330]
+[n0005:03584] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f9251829c37]
+[n0005:03584] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f925182d028]
+[n0005:03584] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f9251822bf6]
+[n0005:03584] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f9251822ca2]
+[n0005:03584] [ 5] ./main() [0x400abc]
+[n0005:03584] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f9251814f45]
+[n0005:03584] [ 7] ./main() [0x4008d9]
+[n0005:03584] *** End of error message ***
+[n0006:04798] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fbd1e0d3330]
+[n0006:04798] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fbd1dd30c37]
+[n0006:04798] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fbd1dd34028]
+[n0006:04798] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fbd1dd29bf6]
+[n0006:04798] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fbd1dd29ca2]
+[n0006:04798] [ 5] ./main() [0x400abc]
+[n0006:04798] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fbd1dd1bf45]
+[n0006:04798] [ 7] ./main() [0x4008d9]
+[n0006:04798] *** End of error message ***
+[n0004:05335] [ 5] ./main() [0x400abc]
+[n0003:15451] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fba3a92ff45]
+[n0000:30728] *** Process received signal ***
+[n0000:30728] Signal: Aborted (6)
+[n0000:30728] Signal code:  (-6)
+[n0002:18343] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fe45a433330]
+[n0002:18343] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fe45a090c37]
+[n0002:18343] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fe45a094028]
+[n0002:18343] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fe45a089bf6]
+[n0002:18343] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fe45a089ca2]
+[n0002:18343] [ 5] ./main() [0x400abc]
+[n0002:18343] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fe45a07bf45]
+[n0002:18343] [ 7] ./main() [0x4008d9]
+[n0002:18343] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03586] *** Process received signal ***
+[n0005:03586] Signal: Aborted (6)
+[n0005:03586] Signal code:  (-6)
+[n0005:03586] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f3dfb5fb330]
+[n0005:03586] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f3dfb258c37]
+[n0005:03586] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f3dfb25c028]
+[n0005:03586] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f3dfb251bf6]
+[n0005:03586] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f3dfb251ca2]
+[n0005:03586] [ 5] ./main() [0x400abc]
+[n0005:03586] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f3dfb243f45]
+[n0005:03586] [ 7] ./main() [0x4008d9]
+[n0005:03586] *** End of error message ***
+[n0006:04794] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f18d214fc37]
+[n0004:05335] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f697a88cf45]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0000:30728] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fbd87b57330]
+[n0000:30728] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fbd877b4c37]
+[n0000:30728] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fbd877b8028]
+[n0000:30728] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fbd877adbf6]
+[n0000:30728] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fbd877adca2]
+[n0000:30728] [ 5] ./main() [0x400abc]
+[n0000:30728] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fbd8779ff45]
+[n0000:30728] [ 7] ./main() [0x4008d9]
+[n0000:30728] *** End of error message ***
+[n0007:03064] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fd822671330]
+[n0007:03064] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fd8222cec37]
+[n0007:03064] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fd8222d2028]
+[n0007:03064] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fd8222c7bf6]
+[n0007:03064] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fd8222c7ca2]
+[n0007:03064] [ 5] ./main() [0x400abc]
+[n0007:03064] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fd8222b9f45]
+[n0007:03064] [ 7] ./main() [0x4008d9]
+[n0007:03064] *** End of error message ***
+[n0002:18340] [ 7] ./main() [0x4008d9]
+[n0002:18340] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03587] *** Process received signal ***
+[n0005:03587] Signal: Aborted (6)
+[n0005:03587] Signal code:  (-6)
+[n0005:03587] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fd0a26c8330]
+[n0005:03587] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fd0a2325c37]
+[n0005:03587] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fd0a2329028]
+[n0005:03587] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fd0a231ebf6]
+[n0005:03587] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fd0a231eca2]
+[n0005:03587] [ 5] ./main() [0x400abc]
+[n0005:03587] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fd0a2310f45]
+[n0005:03587] [ 7] ./main() [0x4008d9]
+[n0005:03587] *** End of error message ***
+[n0006:04793] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f43e3b28330]
+[n0006:04793] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f43e3785c37]
+[n0006:04793] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f43e3789028]
+[n0006:04793] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f43e377ebf6]
+[n0006:04793] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f43e377eca2]
+[n0006:04793] [ 5] ./main() [0x400abc]
+[n0006:04793] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f43e3770f45]
+[n0006:04793] [ 7] ./main() [0x4008d9]
+[n0006:04793] *** End of error message ***
+[n0004:05335] [ 7] ./main() [0x4008d9]
+[n0003:15458] *** Process received signal ***
+[n0003:15458] Signal: Aborted (6)
+[n0003:15458] Signal code:  (-6)
+[n0007:03068] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f4d9c0e7330]
+[n0007:03068] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f4d9bd44c37]
+[n0007:03068] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f4d9bd48028]
+[n0007:03068] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f4d9bd3dbf6]
+[n0007:03068] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f4d9bd3dca2]
+[n0007:03068] [ 5] ./main() [0x400abc]
+[n0007:03068] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f4d9bd2ff45]
+[n0007:03068] [ 7] ./main() [0x4008d9]
+[n0007:03068] *** End of error message ***
+[n0002:18339] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fb278ae8bf6]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03589] *** Process received signal ***
+[n0005:03589] Signal: Aborted (6)
+[n0005:03589] Signal code:  (-6)
+[n0005:03589] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f6c58cbf330]
+[n0005:03589] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f6c5891cc37]
+[n0005:03589] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f6c58920028]
+[n0005:03589] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f6c58915bf6]
+[n0005:03589] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f6c58915ca2]
+[n0005:03589] [ 5] ./main() [0x400abc]
+[n0005:03589] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f6c58907f45]
+[n0005:03589] [ 7] ./main() [0x4008d9]
+[n0005:03589] *** End of error message ***
+[n0006:04794] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f18d2153028]
+[n0004:05335] *** End of error message ***
+[n0003:15451] [ 7] ./main() [0x4008d9]
+[n0007:03066] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f8782904330]
+[n0007:03066] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f8782561c37]
+[n0007:03066] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f8782565028]
+[n0007:03066] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f878255abf6]
+[n0007:03066] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f878255aca2]
+[n0007:03066] [ 5] ./main() [0x400abc]
+[n0007:03066] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f878254cf45]
+[n0007:03066] [ 7] ./main() [0x4008d9]
+[n0007:03066] *** End of error message ***
+[n0002:18345] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f8235174330]
+[n0002:18345] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f8234dd1c37]
+[n0002:18345] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f8234dd5028]
+[n0002:18345] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f8234dcabf6]
+[n0002:18345] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f8234dcaca2]
+[n0002:18345] [ 5] ./main() [0x400abc]
+[n0002:18345] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f8234dbcf45]
+[n0002:18345] [ 7] ./main() [0x4008d9]
+[n0002:18345] *** End of error message ***
+[n0005:03588] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f59b1b97330]
+[n0005:03588] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f59b17f4c37]
+[n0005:03588] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f59b17f8028]
+[n0005:03588] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f59b17edbf6]
+[n0005:03588] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f59b17edca2]
+[n0005:03588] [ 5] ./main() [0x400abc]
+[n0005:03588] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f59b17dff45]
+[n0005:03588] [ 7] ./main() [0x4008d9]
+[n0005:03588] *** End of error message ***
+[n0006:04794] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f18d2148bf6]
+[n0003:15451] *** End of error message ***
+[n0003:15458] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7fccf5257330]
+[n0007:03063] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f7481718330]
+[n0007:03063] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f7481375c37]
+[n0007:03063] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f7481379028]
+[n0007:03063] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f748136ebf6]
+[n0007:03063] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f748136eca2]
+[n0007:03063] [ 5] ./main() [0x400abc]
+[n0007:03063] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f7481360f45]
+[n0007:03063] [ 7] ./main() [0x4008d9]
+[n0007:03063] *** End of error message ***
+[n0002:18341] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f8e226be330]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0005:03585] *** Process received signal ***
+[n0005:03585] Signal: Aborted (6)
+[n0005:03585] Signal code:  (-6)
+[n0006:04794] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f18d2148ca2]
+[n0001:13700] [ 5] ./main() [0x400abc]
+[n0001:13700] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f91992c1f45]
+[n0001:13700] [ 7] ./main() [0x4008d9]
+[n0001:13700] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0007:03067] *** Process received signal ***
+[n0007:03067] Signal: Aborted (6)
+[n0007:03067] Signal code:  (-6)
+[n0007:03067] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f68af4b9330]
+[n0007:03067] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f68af116c37]
+[n0007:03067] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f68af11a028]
+[n0007:03067] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f68af10fbf6]
+[n0007:03067] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f68af10fca2]
+[n0007:03067] [ 5] ./main() [0x400abc]
+[n0007:03067] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f68af101f45]
+[n0007:03067] [ 7] ./main() [0x4008d9]
+[n0007:03067] *** End of error message ***
+[n0002:18339] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fb278ae8ca2]
+[n0002:18339] [ 5] ./main() [0x400abc]
+[n0002:18339] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fb278adaf45]
+[n0002:18339] [ 7] ./main() [0x4008d9]
+[n0002:18339] *** End of error message ***
+[n0005:03585] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f76d29eb330]
+[n0005:03585] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f76d2648c37]
+[n0005:03585] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f76d264c028]
+[n0005:03585] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f76d2641bf6]
+[n0005:03585] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f76d2641ca2]
+[n0005:03585] [ 5] ./main() [0x400abc]
+[n0005:03585] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f76d2633f45]
+[n0005:03585] [ 7] ./main() [0x4008d9]
+[n0005:03585] *** End of error message ***
+[n0006:04794] [ 5] ./main() [0x400abc]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0004:05334] *** Process received signal ***
+[n0004:05334] Signal: Aborted (6)
+[n0004:05334] Signal code:  (-6)
+[n0003:15453] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f410a8a3330]
+[n0003:15453] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f410a500c37]
+[n0003:15453] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f410a504028]
+[n0003:15453] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f410a4f9bf6]
+[n0003:15453] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f410a4f9ca2]
+[n0003:15453] [ 5] ./main() [0x400abc]
+[n0003:15453] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f410a4ebf45]
+[n0003:15453] [ 7] ./main() [0x4008d9]
+[n0003:15453] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0004:05339] *** Process received signal ***
+[n0004:05339] Signal: Aborted (6)
+[n0004:05339] Signal code:  (-6)
+[n0007:03065] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f0b5af1b330]
+[n0007:03065] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f0b5ab78c37]
+[n0007:03065] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f0b5ab7c028]
+[n0007:03065] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f0b5ab71bf6]
+[n0007:03065] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f0b5ab71ca2]
+[n0007:03065] [ 5] ./main() [0x400abc]
+[n0007:03065] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f0b5ab63f45]
+[n0007:03065] [ 7] ./main() [0x4008d9]
+[n0007:03065] *** End of error message ***
+[n0002:18341] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f8e2231bc37]
+[n0006:04794] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f18d213af45]
+[n0006:04794] [ 7] ./main() [0x4008d9]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0007:03069] *** Process received signal ***
+[n0007:03069] Signal: Aborted (6)
+[n0007:03069] Signal code:  (-6)
+[n0007:03069] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f90a6a11330]
+[n0007:03069] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f90a666ec37]
+[n0007:03069] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f90a6672028]
+[n0007:03069] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f90a6667bf6]
+[n0007:03069] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f90a6667ca2]
+[n0007:03069] [ 5] ./main() [0x400abc]
+[n0007:03069] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f90a6659f45]
+[n0007:03069] [ 7] ./main() [0x4008d9]
+[n0007:03069] *** End of error message ***
+[n0002:18341] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f8e2231f028]
+[n0007:03062] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f311571b330]
+[n0007:03062] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f3115378c37]
+[n0007:03062] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f311537c028]
+[n0007:03062] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f3115371bf6]
+[n0007:03062] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f3115371ca2]
+[n0007:03062] [ 5] ./main() [0x400abc]
+[n0007:03062] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f3115363f45]
+[n0007:03062] [ 7] ./main() [0x4008d9]
+[n0007:03062] *** End of error message ***
+[n0002:18341] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f8e22314bf6]
+[n0006:04794] *** End of error message ***
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0003:15457] *** Process received signal ***
+[n0003:15457] Signal: Aborted (6)
+[n0003:15457] Signal code:  (-6)
+[n0003:15458] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7fccf4eb4c37]
+[n0003:15458] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7fccf4eb8028]
+[n0003:15458] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7fccf4eadbf6]
+[n0003:15458] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7fccf4eadca2]
+[n0003:15458] [ 5] ./main() [0x400abc]
+[n0003:15458] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7fccf4e9ff45]
+[n0003:15458] [ 7] ./main() [0x4008d9]
+[n0003:15458] *** End of error message ***
+[n0002:18341] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f8e22314ca2]
+main: ./main.c:54: main: Assertion `n%p == 0' failed.
+[n0006:04796] *** Process received signal ***
+[n0006:04796] Signal: Aborted (6)
+[n0006:04796] Signal code:  (-6)
+[n0004:05339] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f6cd9ace330]
+[n0004:05339] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f6cd972bc37]
+[n0004:05339] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f6cd972f028]
+[n0004:05339] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f6cd9724bf6]
+[n0004:05339] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f6cd9724ca2]
+[n0004:05339] [ 5] ./main() [0x400abc]
+[n0004:05339] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f6cd9716f45]
+[n0004:05339] [ 7] ./main() [0x4008d9]
+[n0004:05339] *** End of error message ***
+[n0002:18341] [ 5] ./main() [0x400abc]
+[n0003:15457] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f3cf40be330]
+[n0003:15457] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f3cf3d1bc37]
+[n0003:15457] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f3cf3d1f028]
+[n0003:15457] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f3cf3d14bf6]
+[n0003:15457] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f3cf3d14ca2]
+[n0003:15457] [ 5] ./main() [0x400abc]
+[n0003:15457] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f3cf3d06f45]
+[n0003:15457] [ 7] ./main() [0x4008d9]
+[n0003:15457] *** End of error message ***
+[n0002:18341] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f8e22306f45]
+[n0004:05334] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f5376bda330]
+[n0004:05334] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f5376837c37]
+[n0004:05334] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f537683b028]
+[n0004:05334] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f5376830bf6]
+[n0004:05334] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f5376830ca2]
+[n0004:05334] [ 5] ./main() [0x400abc]
+[n0004:05334] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f5376822f45]
+[n0004:05334] [ 7] ./main() [0x4008d9]
+[n0004:05334] *** End of error message ***
+[n0002:18341] [ 7] ./main() [0x4008d9]
+[n0006:04796] [ 0] /lib/x86_64-linux-gnu/libpthread.so.0(+0x10330) [0x7f172b9a8330]
+[n0006:04796] [ 1] /lib/x86_64-linux-gnu/libc.so.6(gsignal+0x37) [0x7f172b605c37]
+[n0006:04796] [ 2] /lib/x86_64-linux-gnu/libc.so.6(abort+0x148) [0x7f172b609028]
+[n0006:04796] [ 3] /lib/x86_64-linux-gnu/libc.so.6(+0x2fbf6) [0x7f172b5febf6]
+[n0006:04796] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x2fca2) [0x7f172b5feca2]
+[n0006:04796] [ 5] ./main() [0x400abc]
+[n0006:04796] [ 6] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf5) [0x7f172b5f0f45]
+[n0006:04796] [ 7] ./main() [0x4008d9]
+[n0006:04796] *** End of error message ***
+[n0002:18341] *** End of error message ***
+--------------------------------------------------------------------------
+mpirun noticed that process rank 8 with PID 30725 on node n0000 exited on signal 6 (Aborted).
+--------------------------------------------------------------------------
+49 total processes killed (some possibly by mpirun during cleanup)
