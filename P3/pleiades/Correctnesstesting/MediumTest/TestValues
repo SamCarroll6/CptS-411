@@ -1,0 +1,9 @@
+N and p are variable (described along with n, which is not variable, in each description for the file storing the final results. Results are sorted using shell call:
+	 cat <slurmfile> | sort -V > filename
+Values for medium test are:
+	seed =  150 
+	A    =  74 
+        B    =  49 
+	Prime = 4999 
+	n    =  1024
+These are used with varying processor counts to check correctness across different numbers of processors being used.

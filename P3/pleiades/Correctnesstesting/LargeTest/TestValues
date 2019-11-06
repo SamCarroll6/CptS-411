@@ -1,0 +1,9 @@
+N and p are variable (described along with n, which is not variable, in each description for the file storing the final results. Results are sorted using shell call:
+	 cat <slurmfile> | sort -V > filename
+Values for large test are:
+	seed =  23 
+	A    =  1000 
+        B    =  38 
+	Prime = 9142 
+	n    =  200000
+These are used with varying processor counts to check correctness across different numbers of processors being used.
