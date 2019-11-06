@@ -37,7 +37,9 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
 int main(int argc, char *argv[])
 {
     int rank,p;
-    int seed, A, B, n, Prime;
+    int seed, A, B, n, Prime, i;
+    double sum = 0, average = 0, tRun = 0;
+    struct timeval t1,t2;
     MPI_Init(&argc,&argv);
     MPI_Comm_rank(MPI_COMM_WORLD,&rank);
     MPI_Comm_size(MPI_COMM_WORLD,&p);
@@ -52,14 +54,19 @@ int main(int argc, char *argv[])
 
     // assert(n > (2 * p));
     // assert(n%p == 0);
-
-    ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
-
+    for(i = 0; i < 10; i++)
+    {
+        gettimeofday(&t1,NULL);
+        ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
+        gettimeofday(&t2,NULL);
+        tRun = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+        sum += tRun;
+    }
+    average = sum/10;
+    printf("Process %d Time = %lf milliseconds\n", rank, average);
     if(rank == 0)
     {
         printf("Number of processes =%d\n", p);
-        serialOutput(seed, A, B, Prime, n);
-        matrixOutput(seed, A, B, Prime, n);
     }    
     MPI_Finalize();
 }
@@ -132,7 +139,7 @@ void matrixOutputPar(int seed, int A, int B, int Aoff, int Boff, int P, int n, i
     for(i = 0; i < n; i++)
     {
         matrixMul(x_0Mat, M_next, x_iMat, P);
-        printf("x_%d = %d\n", (rank*(n)) + i + 1, x_iMat[0][0]);
+       // printf("x_%d = %d\n", (rank*(n)) + i + 1, x_iMat[0][0]);
         matrixMul(M_next, M, M_next, P);
     }
 }
