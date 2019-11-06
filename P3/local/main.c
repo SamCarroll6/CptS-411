@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
     Prime = atoi(argv[4]);
     n = atoi(argv[5]);
 
-    assert(n > (2 * p));
-    assert(n%p == 0);
+    // assert(n > (2 * p));
+    // assert(n%p == 0);
 
     ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
 
