@@ -3,7 +3,7 @@
 set -e
 
 
-mpicc -o main ./Ptime.c
+mpicc -o main ./PTime.c
 
 if [ -z "$1" ]
 then
