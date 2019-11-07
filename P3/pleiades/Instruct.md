@@ -2,20 +2,14 @@
 
 Since the cluster uses SLURM workload manager we can't run like we would on local and just execute the shell script. Instead the cluster will use the sbatch command in the form 
 
-sbatch -N<number of nodes> hwrun.sh fulltest <number of processors> <size of array> <flag {0 = SUM, 1 = MAX}>
+sbatch -N<number of nodes> hwrun.sh <Number of Processors> <Seed> <A value> <B value> <Large Prime Number> <number of outputs (n)>
 
 to execute. 
 
-The above will run simply the standard main option. 
+The above will run based on the input you provide to it.
 
-I wrote test cases as well which are stored in accompanying directories CorrectnessTest and PerformanceCompare: 
+There is also an execute.sh script included. This will run a predefined set of values if executed with no input. If input is included it will be input as such:
 
-The CorrectnessTest directory contains a script CT.sh which runs a prewritten set of tests in order to test the correctness of the program. This script takes no additional input, all that needs to be done is execute it on the pleiades cluster. 
+./execute.sh <number of nodes> <Number of Processors> <Seed> <A value> <B value> <Large Prime Number> <number of outputs (n)>
 
-./CT.sh 
-
-The PerformanceCompare directory has a script PC.sh, similar to CT.sh it also runs a predetermined set of tests. This one however does require input. For performance testing I split my main function into 3 separate functions myreducetime.c, mpireducetime.c, bustime.c. Each function grabs the average of 10 run times for the function that corresponds with its name (my reduce = myreducetime.c, mpi_allreduce = mpireducetime.c, naivereduce = bustime.c). I separated the functions because I wanted each to have it's own function focusing on it's time to process in order to avoid the program running multiple processes which end at different times and potentially impacting the results. This script call will take 3 user inputs in order to run properly.
-
-./PC.sh <number of nodes> <function name> <number of processors>
-
-All other information is preset in the tests. 
+Anything not in this format will default to the standard execution and not run your customized inputs. 

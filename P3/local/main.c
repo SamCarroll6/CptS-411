@@ -64,6 +64,14 @@ int main(int argc, char *argv[])
     MPI_Finalize();
 }
 
+/*
+ * Parallel Output:
+ * Inputs: Seed, A, B, Prime, size (n/p), rank, number of processors.
+ * Description: This function develops the M local value that will be
+ * passed into the parallel prefix function. It will essentially give you
+ * the ((2n)/p) - 1 matrix value that will be used to initialize the global
+ * value in parallel prefix.
+ */
 void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int rank, int p)
 {
     MatArr *x_loc = (MatArr*)malloc(sizeof(MatArr) * nsize);
@@ -86,6 +94,20 @@ void ParallelOutput(int seed, int A, int B, int P, int nstart, int nsize, int ra
     matrixOutputPar(seed, A, B, M_loc[0][0], M_loc[0][1], P, nsize, rank);
 }
 
+/*
+ * Parallel Prefix:
+ * Inputs: M_loc, # of processors, rank, Large prime, A, B
+ * Description: This function implements the parallel prefix
+ * algorithm. To start it initializes to matrices, local and 
+ * global (l and g), the local matrix is initialized to the base
+ * matrix provided by the user (A,B,0,1). The global matrix is 
+ * initialized to the matrix found in ParallelOutput() function.
+ * These values are then sent back and forth amongst other nodes
+ * using a bit toggle of the i-th least significant bit to calculate
+ * the node rank to send to/receive from. At the end of this function
+ * the value of local matrix (l) will hold the starting matrix for 
+ * it's n/p values it needs to output. 
+ */
 void parallelPrefix(int M_loc[2][2], int p, int rank, int Prime, int A, int B)
 {
     int l[2][2], g[2][2], g_remote[2][2], hold[2][2];
