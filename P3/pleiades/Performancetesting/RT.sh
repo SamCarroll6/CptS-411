@@ -1,17 +1,17 @@
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 1048576
+sbatch -N4 ./hwrun.sh 16 150 74 49 4999 134217728
 sleep 2
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 2097152
+sbatch -N4 ./hwrun.sh 16 150 74 49 4999 268435456
 sleep 2
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 4194304
+sbatch -N4 ./hwrun.sh 16 150 74 49 4999 536870912
 sleep 2
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 8388608
-sleep 2
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 16777216
-sleep 2
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 33554432
-sleep 2
-sbatch -N4 ./hwrun.sh 16 150 74 49 4999 67108864
-#sleep 2
+sbatch -N4 ./hwrun.sh 16 150 74 49 4999 1073741824
+# sleep 2
+# sbatch -N4 ./hwrun.sh 16 150 74 49 4999 256
+# sleep 2
+# sbatch -N4 ./hwrun.sh 16 150 74 49 4999 512
+# sleep 2
+# sbatch -N4 ./hwrun.sh 16 150 74 49 4999 1024
+# sleep 2
 # sbatch -N4 ./hwrun.sh 16 150 74 49 4999 2048
 # sleep 2
 # sbatch -N4 ./hwrun.sh 16 150 74 49 4999 4096
