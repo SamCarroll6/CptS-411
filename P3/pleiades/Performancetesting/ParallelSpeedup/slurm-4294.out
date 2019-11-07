@@ -1,65 +1,65 @@
-Process 40 Time = 7.115300 milliseconds
-Process 48 Time = 6.841700 milliseconds
-Process 56 Time = 7.120700 milliseconds
-Process 0 Time = 6.832700 milliseconds
 Number of processes =64
-Process 8 Time = 7.118100 milliseconds
-Process 16 Time = 7.123200 milliseconds
-Process 24 Time = 7.076700 milliseconds
-Process 32 Time = 7.105700 milliseconds
-Process 6 Time = 7.089800 milliseconds
-Process 7 Time = 7.080000 milliseconds
-Process 2 Time = 7.099000 milliseconds
-Process 60 Time = 7.104600 milliseconds
-Process 1 Time = 7.099300 milliseconds
-Process 21 Time = 7.087900 milliseconds
-Process 3 Time = 7.101300 milliseconds
-Process 11 Time = 7.101600 milliseconds
-Process 14 Time = 7.091300 milliseconds
-Process 15 Time = 7.068300 milliseconds
-Process 10 Time = 7.101100 milliseconds
-Process 4 Time = 7.094100 milliseconds
-Process 9 Time = 7.095400 milliseconds
-Process 29 Time = 7.095500 milliseconds
-Process 19 Time = 6.907700 milliseconds
-Process 22 Time = 7.087700 milliseconds
-Process 23 Time = 7.086400 milliseconds
-Process 18 Time = 7.100500 milliseconds
-Process 12 Time = 7.107000 milliseconds
-Process 17 Time = 7.089900 milliseconds
-Process 37 Time = 7.042600 milliseconds
-Process 20 Time = 7.084700 milliseconds
-Process 25 Time = 7.085700 milliseconds
-Process 45 Time = 7.097100 milliseconds
-Process 27 Time = 7.089900 milliseconds
-Process 30 Time = 7.088000 milliseconds
-Process 31 Time = 6.795800 milliseconds
-Process 26 Time = 7.100600 milliseconds
-Process 28 Time = 7.108500 milliseconds
-Process 33 Time = 7.085900 milliseconds
-Process 53 Time = 7.097500 milliseconds
-Process 35 Time = 7.083200 milliseconds
-Process 38 Time = 7.081800 milliseconds
-Process 39 Time = 7.075900 milliseconds
-Process 34 Time = 7.113900 milliseconds
-Process 43 Time = 6.910000 milliseconds
-Process 46 Time = 7.083300 milliseconds
-Process 47 Time = 7.069000 milliseconds
-Process 42 Time = 7.097400 milliseconds
-Process 36 Time = 7.099400 milliseconds
-Process 41 Time = 7.096500 milliseconds
-Process 61 Time = 7.097600 milliseconds
-Process 51 Time = 7.089700 milliseconds
-Process 54 Time = 7.088600 milliseconds
-Process 55 Time = 7.029000 milliseconds
-Process 50 Time = 7.093500 milliseconds
-Process 44 Time = 7.104900 milliseconds
-Process 49 Time = 6.804300 milliseconds
-Process 5 Time = 6.758600 milliseconds
-Process 59 Time = 7.085300 milliseconds
-Process 62 Time = 7.082800 milliseconds
-Process 63 Time = 6.788300 milliseconds
-Process 58 Time = 7.105400 milliseconds
-Process 52 Time = 7.091900 milliseconds
-Process 57 Time = 7.073000 milliseconds
-Process 13 Time = 7.090300 milliseconds
+7.115300
+6.841700
+7.120700
+6.832700
+7.118100
+7.123200
+7.076700
+7.105700
+7.089800
+7.080000
+7.099000
+7.104600
+7.099300
+7.087900
+7.101300
+7.101600
+7.091300
+7.068300
+7.101100
+7.094100
+7.095400
+7.095500
+6.907700
+7.087700
+7.086400
+7.100500
+7.107000
+7.089900
+7.042600
+7.084700
+7.085700
+7.097100
+7.089900
+7.088000
+6.795800
+7.100600
+7.108500
+7.085900
+7.097500
+7.083200
+7.081800
+7.075900
+7.113900
+6.910000
+7.083300
+7.069000
+7.097400
+7.099400
+7.096500
+7.097600
+7.089700
+7.088600
+7.029000
+7.093500
+7.104900
+6.804300
+6.758600
+7.085300
+7.082800
+6.788300
+7.105400
+7.091900
+7.073000
+7.090300
