@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
         gettimeofday(&t1,NULL);
         ParallelOutput(seed, A, B, Prime, (rank * (n/p)), (n/p), rank, p);
         gettimeofday(&t2,NULL);
-        tRun = (t2.tv_sec-t1.tv_sec)*1000000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
+        tRun = (t2.tv_sec-t1.tv_sec)*1000 + (double)(t2.tv_usec-t1.tv_usec)/1000;
         sum += tRun;
     }
     average = sum/10;
