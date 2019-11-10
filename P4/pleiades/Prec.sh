@@ -1,6 +1,6 @@
 #!/bin/sh
 
-gcc-9 -o main -fopenmp main.c
+gcc -o main -fopenmp main.c
 
 sbatch -N1 ./main 1000000 1
 sleep 2

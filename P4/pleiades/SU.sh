@@ -1,6 +1,6 @@
 #!/bin/sh
 
-gcc-9 -o main -fopenmp main.c
+gcc -o main -fopenmp main.c
 
 
 if [ -z "$2" ]
