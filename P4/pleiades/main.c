@@ -78,7 +78,7 @@ void foo_locks(long long int n) {
 	omp_destroy_lock(&my_lock);
 	
 	time = omp_get_wtime() - time;
-    printf("%d %d\n", hits, total);
+    printf("%lld %lld\n", hits, total);
     printf("Value of pi = %.20lf\n", 4*((float)hits/(float)total));
 	printf("Locks: Total time = %f seconds \n ", time);
 }
