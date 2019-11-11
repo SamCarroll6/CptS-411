@@ -1,5 +1,6 @@
 #! /bin/sh
 
+
 gcc -o main -fopenmp main.c -lm
 
 
