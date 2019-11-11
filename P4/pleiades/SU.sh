@@ -1,7 +1,7 @@
 #! /bin/sh
 
 
-if [ -z "$2" ]
+if [ -z "$1" ]
 then
     sbatch -N1 ./hwrun.sh 1000000 1
     sleep 2
