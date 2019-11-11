@@ -13,9 +13,9 @@
 #include <math.h>
 #include <assert.h>
 
-void foo_critical(long long int);
-//void foo_atomic(long long int);
-void foo_locks(long long int, int threads);
+
+void est_pi(long long int n);
+int check(double x, double y);
 
 int main(int argc, char *argv[])
 {
@@ -45,64 +45,44 @@ int main(int argc, char *argv[])
 		int rank = omp_get_thread_num();
 	}
 
-	foo_locks(loops, p);
+	est_pi(loops);
 
 
 	return 0;
 }
 
 
-void foo_locks(long long int n, int threads) {
+void est_pi(long long int n) {
 	long long int total = 0;
     long long int hits = 0;
-    float *x, *y, distance;
-	x = (float*)malloc(sizeof(float) * threads);
-	y = (float*)malloc(sizeof(float) * threads);
+    float x, y, distance;
 	long long int i;
     srand(300);
-	omp_lock_t *my_lock;
-	my_lock = (omp_lock_t*)malloc(sizeof(omp_lock_t) * threads);
-	for(i = 0; i < threads; i++)
-	{
-		omp_init_lock(&(my_lock[i]));
-	}
-	
+	// omp_lock_t my_lock;
+
+	// omp_init_lock(&my_lock);
 
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static) shared(distance,my_lock)	
+	#pragma omp parallel for schedule(static) reduction(+:hits)
 	for(i = 0; i < n; i++) 
 	{	
-		int rank = omp_get_thread_num();
-		x[rank] = (float)rand()/RAND_MAX;
-		y[rank] = (float)rand()/RAND_MAX;
-		omp_set_lock(&(my_lock[0]));
-		distance = sqrt((pow((x[rank] - 0.5), 2)+pow((y[rank]-0.5),2)));
-		if(distance <= 0.5)
+		float x = (float)rand()/RAND_MAX;
+		float y = (float)rand()/RAND_MAX;
+		if(check(x,y))
 		{
-			omp_unset_lock(&(my_lock[0]));
-			#pragma omp atomic
-        		hits += 1;
+			hits++;
 		}
-		else
-			omp_unset_lock(&(my_lock[0]));
-	// 	int rank = (i * 49999) % threads;
-	// 	//printf("%d %d\n", rank, omp_get_thread_num());
-	// 	omp_set_lock(&(my_lock[rank]));
-	// 	x[rank] = (float)rand()/RAND_MAX;
-    //     y[rank] = (float)rand()/RAND_MAX;
-	// 	//omp_set_lock(&my_lock);
-    //   //  distance = sqrt((pow((x[omp_get_thread_num()] - 0.5), 2)+pow((y[omp_get_thread_num()]-0.5),2)));
-	// 	if(sqrt((pow((x[rank] - 0.5), 2)+pow((y[rank]-0.5),2))) <= 0.5)
-	// 	{
-	// 		#pragma omp atomic
-    //         hits += 1;
-	// 	}
-    //    // total += 1;
-	// 	omp_unset_lock(&(my_lock[rank]));
-	}
-	for(i = 0; i < threads; i++)
-	{
-		omp_destroy_lock(&(my_lock[i]));
+		// omp_set_lock(&my_lock);
+		// x = (float)rand()/RAND_MAX;
+        // y = (float)rand()/RAND_MAX;
+        // distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
+        // if(distance <= 0.5)
+		// {
+		// 	#pragma omp atomic
+        //     	hits += 1;
+		// }
+        // total += 1;
+		// omp_unset_lock(&my_lock);
 	}
 	//omp_destroy_lock(&my_lock);
 	
@@ -110,4 +90,12 @@ void foo_locks(long long int n, int threads) {
     printf("%lld %lld\n", hits, total);
     printf("Value of pi = %.20lf\n", 4*((float)hits/(float)n));
 	printf("Locks: Total time = %f seconds \n ", time);
+}
+
+int check(double x, double y)
+{
+	double distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
+	if(distance <= 0.5)
+		return 1;
+	return 0;
 }
