@@ -1,22 +1,24 @@
+#!/bin/sh
+
 gcc -o main -fopenmp main.c -lm
 
 
 if [ -z "$2" ]
 then
-    sbatch -N1 ./main 1000000 1
+    sbatch -N1 ./hwrun.sh 1000000 1
     sleep 2
-    sbatch -N1 ./main 1000000 2
+    sbatch -N1 ./hwrun.sh 1000000 2
     sleep 2
-    sbatch -N1 ./main 1000000 4
+    sbatch -N1 ./hwrun.sh 1000000 4
     sleep 2
-    sbatch -N1 ./main 1000000 8
+    sbatch -N1 ./hwrun.sh 1000000 8
     sleep 2
 else
-    sbatch -N1 ./main $1 1
+    sbatch -N1 ./hwrun.sh $1 1
     sleep 2
-    sbatch -N1 ./main $1 2
+    sbatch -N1 ./hwrun.sh $1 2
     sleep 2
-    sbatch -N1 ./main $1 4
+    sbatch -N1 ./hwrun.sh $1 4
     sleep 2
-    sbatch -N1 ./main $1 8
+    sbatch -N1 ./hwrun.sh $1 8
 fi
