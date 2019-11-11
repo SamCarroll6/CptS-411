@@ -69,23 +69,36 @@ void foo_locks(long long int n, int threads) {
 	
 
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static) shared(x,y,my_lock)	
+	#pragma omp parallel for schedule(static) shared(distance,my_lock)	
 	for(i = 0; i < n; i++) 
 	{	
-		//int rank = omp_get_thread_num();
-		//printf("%d %d\n", rank, omp_get_thread_num());
-		omp_set_lock(&(my_lock[(i*49999)%threads]));
-		x[(i*49999)%threads] = (float)rand()/RAND_MAX;
-        y[(i*49999)%threads] = (float)rand()/RAND_MAX;
-		//omp_set_lock(&my_lock);
-      //  distance = sqrt((pow((x[omp_get_thread_num()] - 0.5), 2)+pow((y[omp_get_thread_num()]-0.5),2)));
-		if(sqrt((pow((x[(i*49999)%threads] - 0.5), 2)+pow((y[(i*49999)%threads]-0.5),2))) <= 0.5)
+		int rank = omp_get_thread_num();
+		x[rank] = (float)rand()/RAND_MAX;
+		y[rank] = (float)rand()/RAND_MAX;
+		omp_set_lock(&(my_lock[0]));
+		distance = sqrt((pow((x[rank] - 0.5), 2)+pow((y[rank]-0.5),2)));
+		if(distance <= 0.5)
 		{
+			omp_unset_lock(&(my_lock[0]));
 			#pragma omp atomic
-            hits += 1;
+        		hits += 1;
 		}
-       // total += 1;
-		omp_unset_lock(&(my_lock[(i*7)%threads]));
+		else
+			omp_unset_lock(&(my_lock[0]));
+	// 	int rank = (i * 49999) % threads;
+	// 	//printf("%d %d\n", rank, omp_get_thread_num());
+	// 	omp_set_lock(&(my_lock[rank]));
+	// 	x[rank] = (float)rand()/RAND_MAX;
+    //     y[rank] = (float)rand()/RAND_MAX;
+	// 	//omp_set_lock(&my_lock);
+    //   //  distance = sqrt((pow((x[omp_get_thread_num()] - 0.5), 2)+pow((y[omp_get_thread_num()]-0.5),2)));
+	// 	if(sqrt((pow((x[rank] - 0.5), 2)+pow((y[rank]-0.5),2))) <= 0.5)
+	// 	{
+	// 		#pragma omp atomic
+    //         hits += 1;
+	// 	}
+    //    // total += 1;
+	// 	omp_unset_lock(&(my_lock[rank]));
 	}
 	for(i = 0; i < threads; i++)
 	{
