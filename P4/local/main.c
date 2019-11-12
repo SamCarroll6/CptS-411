@@ -13,9 +13,9 @@
 #include <math.h>
 #include <assert.h>
 
-
-void est_pi(long long int n);
-int check(double x, double y);
+void foo_critical(long long int);
+//void foo_atomic(long long int);
+void foo_locks(long long int);
 
 int main(int argc, char *argv[])
 {
@@ -45,44 +45,36 @@ int main(int argc, char *argv[])
 		int rank = omp_get_thread_num();
 	}
 
-	est_pi(loops);
+	foo_locks(loops);
 
 
 	return 0;
 }
 
 
-void est_pi(long long int n) {
+void foo_locks(long long int n) {
 	long long int total = 0;
     long long int hits = 0;
     float x, y, distance;
-	long long int i;
+	int i;
     srand(300);
-	// omp_lock_t my_lock;
+	//omp_lock_t my_lock;
 
-	// omp_init_lock(&my_lock);
+	//omp_init_lock(&my_lock);
 
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static) reduction(+:hits)
+	#pragma omp parallel for schedule(static) private(x,y,distance) shared(total) reduction(+:hits)
 	for(i = 0; i < n; i++) 
 	{	
-		float x = (float)rand()/RAND_MAX;
-		float y = (float)rand()/RAND_MAX;
-		if(check(x,y))
-		{
-			hits++;
-		}
-		// omp_set_lock(&my_lock);
-		// x = (float)rand()/RAND_MAX;
-        // y = (float)rand()/RAND_MAX;
-        // distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
-        // if(distance <= 0.5)
-		// {
-		// 	#pragma omp atomic
-        //     	hits += 1;
-		// }
-        // total += 1;
-		// omp_unset_lock(&my_lock);
+		//omp_set_lock(&my_lock);
+		x = (float)rand()/RAND_MAX;
+        y = (float)rand()/RAND_MAX;
+        distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
+        if(distance <= 0.5)
+            hits += 1;
+		#pragma omp atomic
+        	total += 1;
+		//omp_unset_lock(&my_lock);
 	}
 	//omp_destroy_lock(&my_lock);
 	
@@ -90,12 +82,4 @@ void est_pi(long long int n) {
     printf("%lld %lld\n", hits, total);
     printf("Value of pi = %.20lf\n", 4*((float)hits/(float)n));
 	printf("Locks: Total time = %f seconds \n ", time);
-}
-
-int check(double x, double y)
-{
-	double distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
-	if(distance <= 0.5)
-		return 1;
-	return 0;
 }

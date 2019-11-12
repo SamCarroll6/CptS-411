@@ -56,29 +56,30 @@ void foo_locks(long long int n) {
 	long long int total = 0;
     long long int hits = 0;
     float x, y, distance;
-	long long int i;
+	int i;
     srand(300);
-	omp_lock_t my_lock;
+	//omp_lock_t my_lock;
 
-	omp_init_lock(&my_lock);
+	//omp_init_lock(&my_lock);
 
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static) shared(x,y,distance,hits,total)	
+	#pragma omp parallel for schedule(static) private(x,y,distance) shared(total) reduction(+:hits)
 	for(i = 0; i < n; i++) 
 	{	
-		omp_set_lock(&my_lock);
+		//omp_set_lock(&my_lock);
 		x = (float)rand()/RAND_MAX;
         y = (float)rand()/RAND_MAX;
         distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
         if(distance <= 0.5)
             hits += 1;
-        total += 1;
-		omp_unset_lock(&my_lock);
+		#pragma omp atomic
+        	total += 1;
+		//omp_unset_lock(&my_lock);
 	}
-	omp_destroy_lock(&my_lock);
+	//omp_destroy_lock(&my_lock);
 	
 	time = omp_get_wtime() - time;
     printf("%lld %lld\n", hits, total);
-    printf("Value of pi = %.20lf\n", 4*((float)hits/(float)total));
+    printf("Value of pi = %.20lf\n", 4*((float)hits/(float)n));
 	printf("Locks: Total time = %f seconds \n ", time);
 }
