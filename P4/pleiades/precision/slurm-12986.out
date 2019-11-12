@@ -1,0 +1,10 @@
+main.c: In function ‘main’:
+main.c:30:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘long unsigned int’ [-Wformat=]
+  printf("Info: number of iterations = %lld (%d)\n",loops, sizeof(long long int));
+  ^
+Info: number of iterations = 20000000 (8)
+Debug: number of requested threads = 2
+15710118 20000000
+Value of pi = 3.14202356338500976562
+Locks: Total time = 19.736388 seconds 
+ 
