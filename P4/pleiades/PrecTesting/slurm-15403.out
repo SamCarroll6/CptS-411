@@ -1,0 +1,25 @@
+main.c: In function ‘main’:
+main.c:29:2: warning: format ‘%d’ expects argument of type ‘int’, but argument 3 has type ‘long unsigned int’ [-Wformat=]
+  printf("Info: number of iterations = %lld (%d)\n",loops, sizeof(long long int));
+  ^
+main.c: In function ‘foo_locks’:
+main.c:76:4: warning: passing argument 1 of ‘rand_r’ from incompatible pointer type [enabled by default]
+    float x = (float)rand_r(&seed)/RAND_MAX;
+    ^
+In file included from main.c:10:0:
+/usr/include/stdlib.h:381:12: note: expected ‘unsigned int *’ but argument is of type ‘long long unsigned int *’
+ extern int rand_r (unsigned int *__seed) __THROW;
+            ^
+main.c:78:4: warning: passing argument 1 of ‘rand_r’ from incompatible pointer type [enabled by default]
+    float y = (float)rand_r(&seed)/RAND_MAX;
+    ^
+In file included from main.c:10:0:
+/usr/include/stdlib.h:381:12: note: expected ‘unsigned int *’ but argument is of type ‘long long unsigned int *’
+ extern int rand_r (unsigned int *__seed) __THROW;
+            ^
+Info: number of iterations = 128 (8)
+Debug: number of requested threads = 8
+0 128
+Value of pi = 3.21875000000000000000
+Locks: Total time = 2558781.273701 seconds 
+ 
