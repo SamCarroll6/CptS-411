@@ -70,11 +70,12 @@ void foo_locks(long long int n) {
 		for(i = 0; i < n; i++) 
 		{	
 			//omp_set_lock(&my_lock);
-			int rank = omp_get_thread_num();
-			unsigned long long int seed = rank+1;
-			seed = seed*i;
+			int seed = omp_get_wtime();
+			// int rank = omp_get_thread_num();
+			// unsigned long long int seed = rank+1;
+			// seed = seed*i;
 			float x = (float)rand_r(&seed)/RAND_MAX;
-			seed = seed / 2;
+			// seed = seed / 2;
 			float y = (float)rand_r(&seed)/RAND_MAX;
 			float distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
 			if(distance <= 0.5)
