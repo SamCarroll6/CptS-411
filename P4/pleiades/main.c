@@ -13,7 +13,6 @@
 #include <math.h>
 #include <assert.h>
 
-void foo_critical(long long int);
 //void foo_atomic(long long int);
 void foo_locks(long long int);
 
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
 
 	omp_set_num_threads(p);
 	omp_set_dynamic(0);
-	
+
 	#pragma omp parallel
 	{
 		assert(p==omp_get_num_threads());
@@ -54,10 +53,10 @@ int main(int argc, char *argv[])
 
 
 void foo_locks(long long int n) {
-	long long int total = 0;
+	//long long int total = 0;
     long long int hits = 0;
     //float x, y, distance;
-	int i;
+	long long int i;
 	//omp_lock_t my_lock;
 
 	//omp_init_lock(&my_lock);
@@ -68,10 +67,10 @@ void foo_locks(long long int n) {
 	{	
 		//omp_set_lock(&my_lock);
 		int rank = omp_get_thread_num();
-		int seed = rank+1;
+		unsigned long long int seed = rank+1;
 		seed = seed*i;
 		float x = (float)rand_r(&seed)/RAND_MAX;
-		seed = seed * 2;
+		seed = seed / 2;
         float y = (float)rand_r(&seed)/RAND_MAX;
         float distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
         if(distance <= 0.5)
