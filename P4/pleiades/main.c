@@ -62,7 +62,7 @@ void foo_locks(long long int n) {
 	//omp_init_lock(&my_lock);
 
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(dynamic) reduction(+:hits)
+	#pragma omp parallel for schedule(static) reduction(+:hits)
 	for(i = 0; i < n; i++) 
 	{	
 		//omp_set_lock(&my_lock);
