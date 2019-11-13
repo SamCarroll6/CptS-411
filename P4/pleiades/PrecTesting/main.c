@@ -83,6 +83,7 @@ void foo_locks(long long int n) {
 		}
 		//omp_destroy_lock(&my_lock);
 		sum += 4*((float)hits/(float)n);
+		hits = 0;
 		time = omp_get_wtime() - time;
 	}
 	avg = sum/(float)10;
