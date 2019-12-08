@@ -1,7 +1,7 @@
 #! /bin/sh
 
 
-g++ -o main -fopenmp main.c -lm
+g++ -std=c++11 -o main -fopenmp main.c -lm
 
 
 if [ -z "$2" ]
