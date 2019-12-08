@@ -7,16 +7,27 @@
  */
 
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <omp.h>
 #include <math.h>
 #include <assert.h>
+#include <map>
+#include <list>
 
 void Pi_Est(long long int);
 
 int main(int argc, char *argv[])
 {
+	
+	std::map<int,std::list<int>> mymap;
+	mymap[15].push_back(10000);
+	for(auto hold : mymap[15])
+	{
+		std::cout << hold << '\n';
+	}
+	
 	long long int i, loops;
 
 	if(argc<2) {
@@ -63,9 +74,9 @@ void Pi_Est(long long int n) {
 		int rank = omp_get_thread_num();
 		unsigned long long int seed = rank+1;
 		seed = seed*i;
-		float x = (float)rand_r(&seed)/RAND_MAX;
+		float x = (float)rand_r((unsigned int*)&seed)/RAND_MAX;
 		seed = seed / 2;
-        float y = (float)rand_r(&seed)/RAND_MAX;
+        float y = (float)rand_r((unsigned int*)&seed)/RAND_MAX;
         float distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
         if(distance <= 0.5)
             hits += 1;
