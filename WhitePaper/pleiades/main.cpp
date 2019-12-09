@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	std::cout << "Edges: " << Edges << std::endl;
 
 	double time = omp_get_wtime();
-	//#pragma omp parallel for schedule(static) reduction(+:total)
+	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(int i = 0; i < Vertices; i++)
 	{
 		Walk(V[i], damping, K);
