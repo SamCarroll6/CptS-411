@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(i = 0; i < Vertices; i++)
 	{
-		//Walk(V[i], damping, K);
+		Walk(V[i], damping, K);
 		total++;
 	}
 
@@ -172,8 +172,8 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 
 	// for(j = 0; j < walk; j++)
 	// {
-	// 	#pragma omp atomic
-	// 		myGraph[curHop].front()++;
+		#pragma omp atomic
+			myGraph[curHop].front()++;
 	// 	seed = seed*j;
 	// 	dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
 	// 	if(dampcheck <= damping)
