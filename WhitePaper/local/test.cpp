@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 	}
 
 	std::string fName = "../Paths/Facebook.txt";
-	if(argc==5){
+	if(argc >= 5){
 		fName.assign(argv[4]);
 	}
 
@@ -182,7 +182,7 @@ long long int generateGraph(std::string fName)
 			else
 			{
 				std::vector<std::string> hold;
-				hold = split(curLine, ' ');
+				hold = split(curLine, '\t');
 				Vertex = stoll(hold[0]);
 				Edge = stoll(hold[1]);
 				if(myGraph.count(Vertex) != 0)
