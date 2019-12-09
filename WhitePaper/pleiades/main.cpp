@@ -90,11 +90,10 @@ int main(int argc, char *argv[])
 
 	time = omp_get_wtime() - time;
 
-	long long int sum = 0;
-	for(auto run : myGraph)
-	{
-		std::cout << run.second.front() << std::endl;
-	}
+	// for(auto run : myGraph)
+	// {
+	// 	std::cout << run.second.front() << std::endl;
+	// }
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
