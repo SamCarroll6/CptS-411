@@ -32,7 +32,7 @@ long long int generateGraph(std::string fName);
 
 int main(int argc, char *argv[])
 {
-
+	std::cout << "argc: " << argc << std::endl;
 	long long int K = 0; // Length of Walk
 	long long int Vertices = 0, Edges = 0;
 	long long int total = 0;
