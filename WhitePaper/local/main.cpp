@@ -75,21 +75,21 @@ int main(int argc, char *argv[])
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
 
-	//double time = omp_get_wtime();
+	double time = omp_get_wtime();
 	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(int i = 0; i < Vertices; i++)
 	{
 		Walk(V[i], damping, K);
 		total++;
 	}
-	//time = omp_get_wtime() - time;
+	time = omp_get_wtime() - time;
 	long long int sum = 0;
 	for(auto run : myGraph)
 	{
 		std::cout << run.second.front() << std::endl;
 	}
 	std::cout << "Total = " << total << std::endl;
-	//std::cout << "Total time = " << time << "seconds" << std::endl;
+	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
 }
 
@@ -154,19 +154,6 @@ long long int generateGraph(std::string fName)
 		std::cout << "Could not open file\n";
 		return 0;
 	}
-	// for(auto vertex : myGraph)
-	// {
-	// 	bool first = true;
-	// 	std::cout << vertex.first << std::endl; 
-	// 	for(auto edge : vertex.second){
-	// 		if(first)
-	// 		{
-	// 			first = false;
-	// 			continue;
-	// 		}
-	// 		std::cout << '\t' << edge << std::endl;
-	// 	}
-	// }
 	return count;
 }
 
@@ -182,6 +169,8 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 	long long int edges = 0;
 	int dampcheck = 0;
 
+
+	std::cout << "Walking baby!\n";
 	for(j = 0; j < walk; j++)
 	{
 		#pragma omp atomic
