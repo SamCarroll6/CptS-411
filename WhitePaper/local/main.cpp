@@ -15,35 +15,53 @@
 #include <assert.h>
 #include <map>
 #include <list>
+#include <iterator>
+#include <sstream>
+#include <string>
+#include <fstream>
+#include <vector>
 
-void Pi_Est(long long int);
+std::map<long long int, std::list<long long int>> myGraph;
+
+std::vector<std::string> split(std::string line, char delim);
+void Pi_Est(long long int n);
+void generateGraph(std::string fName);
 
 int main(int argc, char *argv[])
 {
-	
-	std::map<int,std::list<int>> mymap;
-	mymap[15].push_back(10000);
-	for(auto hold : mymap[15])
-	{
-		std::cout << hold << '\n';
-	}
-	
-	long long int i, loops;
 
-	if(argc<2) {
-		printf("Usage: loop {number of iterations} [number of threads]\n");
+	unsigned long long int K = 0; // Length of Walk
+	int damping = 0; // Damping value 0 - 100	
+
+	// mymap[15].push_back(10000);
+	// for(auto hold : mymap[15])
+	// {
+	// 	std::cout << hold << '\n';
+	// }
+
+	if(argc<3) {
+		printf("Usage: loop [Length of Walk] [Damping value {0-100}] {Optional: Number of Threads} {Optional: Filename}\n");
 		exit(1);
 	}
 	
-	loops = atoll(argv[1]);
-	printf("Info: number of iterations = %lld (%d)\n",loops, sizeof(long long int));
+	K = atoll(argv[1]);
+	damping = atoi(argv[2]);
+
+	assert(damping <= 100 && damping >= 0);
 
 	int p=1;
-	if(argc==3) {
-		p = atoi(argv[2]);
+	if(argc==4) {
+		p = atoi(argv[3]);
 		assert(p>=1);
 		printf("Debug: number of requested threads = %d\n",p);
 	}
+
+	std::string fName = "../Paths/Facebook.txt";
+	if(argc==5){
+		fName.assign(argv[4]);
+	}
+
+	std::cout << fName << std::endl;
 
 	omp_set_num_threads(p);
 	omp_set_dynamic(0);
@@ -55,10 +73,69 @@ int main(int argc, char *argv[])
 		int rank = omp_get_thread_num();
 	}
 
-	Pi_Est(loops);
+	generateGraph(fName);
+
+	//Pi_Est(loops);
 
 
 	return 0;
+}
+
+std::vector<std::string> split(std::string line, char delim)
+{
+	std::vector<std::string> ret; 
+	// .push_back();
+	std::istringstream iss(line);
+	std::string hold; 
+	while(std::getline(iss, hold, ' '))
+	{
+		ret.push_back(hold);
+	}
+	return ret;
+}
+
+void generateGraph(std::string fName)
+{
+	std::string curLine;
+	long long int Vertex = 0, Edge = 0;
+	std::ifstream inputFile(fName);
+	if(inputFile.is_open())
+	{
+		while(getline(inputFile,curLine))
+		{
+			if(curLine[0] == '#')
+			{
+				std::cout << "Comment\n";
+			}
+			else
+			{
+				std::vector<std::string> hold;
+				hold = split(curLine, ' ');
+				Vertex = stoll(hold[0]);
+				Edge = stoll(hold[1]);
+				if(myGraph.count(Vertex) != 0)
+					myGraph[Vertex].push_back(Edge);
+				else
+				{
+					std::list<long long int> EdgeHold;
+					EdgeHold.push_back(Edge);
+					myGraph.insert({Vertex,EdgeHold});
+				}
+			}
+		}
+		inputFile.close();
+	}
+	else{
+		std::cout << "Could not open file\n";
+		return;
+	}
+	for(auto vertex : myGraph)
+	{
+		std::cout << vertex.first << std::endl; 
+		for(auto edge : vertex.second){
+			std::cout << '\t' << edge << std::endl;
+		}
+	}
 }
 
 
