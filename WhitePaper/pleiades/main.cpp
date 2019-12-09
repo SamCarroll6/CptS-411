@@ -170,40 +170,40 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 	long long int edges = 0;
 	int dampcheck = 0;
 
-	for(j = 0; j < walk; j++)
-	{
-		#pragma omp atomic
-			myGraph[curHop].front()++;
-		seed = seed*j;
-		dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
-		if(dampcheck <= damping)
-		{
-			seed = seed * 4;
-			next = (rand_r((unsigned int*)&seed)) % size;
-			curHop = V[next];
-		}
-		else
-		{
-			seed = seed * 4;
-			edges =  myGraph[curHop].size();
-			count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
-					   // the next node is just itself.
-			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
-															 // but it also qualifies for that vertexes edge to itself
-															 // since it is always present on every vertex.
-			if(next != 0)
-			{
-				for(auto check : myGraph[Vertex])
-				{
-					if(count == next)
-					{
-						preHop = curHop;
-						curHop = V[check];
-						break;
-					}
-					count++;
-				}
-			}
-		}
-	}
+	// for(j = 0; j < walk; j++)
+	// {
+	// 	#pragma omp atomic
+	// 		myGraph[curHop].front()++;
+	// 	seed = seed*j;
+	// 	dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
+	// 	if(dampcheck <= damping)
+	// 	{
+	// 		seed = seed * 4;
+	// 		next = (rand_r((unsigned int*)&seed)) % size;
+	// 		curHop = V[next];
+	// 	}
+	// 	else
+	// 	{
+	// 		seed = seed * 4;
+	// 		edges =  myGraph[curHop].size();
+	// 		count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
+	// 				   // the next node is just itself.
+	// 		next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
+	// 														 // but it also qualifies for that vertexes edge to itself
+	// 														 // since it is always present on every vertex.
+	// 		if(next != 0)
+	// 		{
+	// 			for(auto check : myGraph[Vertex])
+	// 			{
+	// 				if(count == next)
+	// 				{
+	// 					preHop = curHop;
+	// 					curHop = V[check];
+	// 					break;
+	// 				}
+	// 				count++;
+	// 			}
+	// 		}
+	// 	}
+	// }
 }
