@@ -32,7 +32,7 @@ std::map<long long int, std::vector<long long int>> myGraph;
 
 std::vector<long long int> V; // V will hold the numbers of vertexes to make finding the values easier because I can't iterate a map in this version
 				 // of Openmp
-void TopFive(void);
+void TopFive(long long int total);
 std::vector<std::string> split(std::string line, char delim);
 void Walk(long long int Vertex, int damping, long long int walk);
 long long int generateGraph(std::string fName);
@@ -91,20 +91,21 @@ int main(int argc, char *argv[])
 	}
 
 	time = omp_get_wtime() - time;
-	long long int sum = 0;
-	for(const auto& run : myGraph)
-	{
-		std::cout << run.first << ' ' << run.second.front() << std::endl;
-		sum += run.second.front();
-	}
-	TopFive();
-	std::cout << "Sum: " << sum << std::endl;
+	// long long int sum = 0;
+	// for(const auto& run : myGraph)
+	// {
+	// 	std::cout << run.first << ' ' << run.second.front() << std::endl;
+	// 	sum += run.second.front();
+	// }
+	long long int nK = Vertices * K;
+	TopFive(nK);
+	// std::cout << "Sum: " << sum << std::endl;
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
 }
 
-void TopFive(void)
+void TopFive(long long int total)
 {
 	std::stack<struct maxfive> ret;
 	struct maxfive check;
@@ -147,7 +148,7 @@ void TopFive(void)
 	std::cout << "Top 5: " << std::endl;
 	for(int j = 0; j < 5; j++)
 	{
-		std::cout << ret.top().key << ' ' << ret.top().value << std::endl;
+		std::cout << ret.top().key << ' ' << (double)ret.top().value / total << std::endl;
 		ret.pop();
 	}
 }
@@ -181,7 +182,7 @@ long long int generateGraph(std::string fName)
 			else
 			{
 				std::vector<std::string> hold;
-				hold = split(curLine, '\t');
+				hold = split(curLine, ' ');
 				Vertex = stoll(hold[0]);
 				Edge = stoll(hold[1]);
 				if(myGraph.count(Vertex) != 0)

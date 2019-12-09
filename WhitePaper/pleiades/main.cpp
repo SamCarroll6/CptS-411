@@ -20,19 +20,26 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <stack>
+
+struct maxfive
+{
+	long long int key;
+	long long int value;
+};
 
 std::map<long long int, std::vector<long long int>> myGraph;
 
 std::vector<long long int> V; // V will hold the numbers of vertexes to make finding the values easier because I can't iterate a map in this version
 				 // of Openmp
-
+void TopFive(long long int total);
 std::vector<std::string> split(std::string line, char delim);
 void Walk(long long int Vertex, int damping, long long int walk);
 long long int generateGraph(std::string fName);
 
 int main(int argc, char *argv[])
 {
-	std::cout << "argc: " << argc << std::endl;
+
 	long long int K = 0; // Length of Walk
 	long long int Vertices = 0, Edges = 0;
 	long long int total = 0;
@@ -84,16 +91,66 @@ int main(int argc, char *argv[])
 	}
 
 	time = omp_get_wtime() - time;
-	long long int sum = 0;
-	for(const auto& run : myGraph)
-	{
-		std::cout << run.first << ' ' << run.second.front() << std::endl;
-		sum += run.second.front();
-	}
-	std::cout << "Sum: " << sum << std::endl;
+	// long long int sum = 0;
+	// for(const auto& run : myGraph)
+	// {
+	// 	std::cout << run.first << ' ' << run.second.front() << std::endl;
+	// 	sum += run.second.front();
+	// }
+	long long int nK = Vertices * K;
+	TopFive(nK);
+	// std::cout << "Sum: " << sum << std::endl;
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
+}
+
+void TopFive(long long int total)
+{
+	std::stack<struct maxfive> ret;
+	struct maxfive check;
+	check.key = -1;
+	check.value = 0;
+	ret.push(check);
+	ret.push(check);
+	ret.push(check);
+	ret.push(check);
+	ret.push(check);
+	struct maxfive hold[4] = {0, 0, 0, 0};
+	for(const auto& run : myGraph)
+	{
+		if(run.second.front() > ret.top().value)
+		{
+			check.key = run.first;
+			check.value = run.second.front();
+			ret.pop();
+			int i = 0;
+			while(!ret.empty() && i < 4)
+			{
+				if(check.value < ret.top().value)
+				{
+					ret.push(check);
+					break;
+				}
+				hold[i] = ret.top();
+				ret.pop();
+				i++;
+			}
+			if(i==4)
+				ret.push(check);
+			i--;
+			for(i; i >= 0; i--)
+			{
+				ret.push(hold[i]);
+			}
+		}
+	}
+	std::cout << "Top 5: " << std::endl;
+	for(int j = 0; j < 5; j++)
+	{
+		std::cout << ret.top().key << ' ' << (double)ret.top().value / total << std::endl;
+		ret.pop();
+	}
 }
 
 std::vector<std::string> split(std::string line, char delim)
@@ -125,7 +182,7 @@ long long int generateGraph(std::string fName)
 			else
 			{
 				std::vector<std::string> hold;
-				hold = split(curLine, '\t');
+				hold = split(curLine, ' ');
 				Vertex = stoll(hold[0]);
 				Edge = stoll(hold[1]);
 				if(myGraph.count(Vertex) != 0)
