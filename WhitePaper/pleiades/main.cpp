@@ -75,14 +75,17 @@ int main(int argc, char *argv[])
 	Vertices = myGraph.size();
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
-
+	std::cout << "Test1\n";
 	double time = omp_get_wtime();
-
+	std::cout << "Test2\n";
 	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(i = 0; i < Vertices; i++)
 	{
+		std::cout << "Test3\n";
 		Walk(V[i], damping, K);
+		std::cout << "Test4\n";
 		total++;
+		std::cout << "Test5\n";
 	}
 
 	time = omp_get_wtime() - time;
@@ -158,7 +161,6 @@ long long int generateGraph(std::string fName)
 		std::cout << "Could not open file\n";
 		return 0;
 	}
-	std::cout << "INHERE\n";
 	return count;
 }
 
