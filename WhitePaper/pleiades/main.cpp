@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 
 	long long int K = 0; // Length of Walk
 	long long int Vertices = 0, Edges = 0;
+	long long int total = 0;
+	long long int i;
 	int damping = 0; // Damping value 0 - 100	
 	if(argc<3) {
 		printf("Usage: loop [Length of Walk] [Damping value {0-100}] {Optional: Number of Threads} {Optional: Filename}\n");
@@ -71,19 +73,20 @@ int main(int argc, char *argv[])
 	}
 	Edges = generateGraph(fName);
 	Vertices = myGraph.size();
-	long long int total = 0;
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
-	long long int i;
+
 	double time = omp_get_wtime();
+
 	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(i = 0; i < Vertices; i++)
 	{
-		std::cout << "Try Walking!\n";
 		Walk(V[i], damping, K);
 		total++;
 	}
+
 	time = omp_get_wtime() - time;
+
 	long long int sum = 0;
 	for(auto run : myGraph)
 	{
@@ -155,6 +158,7 @@ long long int generateGraph(std::string fName)
 		std::cout << "Could not open file\n";
 		return 0;
 	}
+	std::cout << "INHERE\n";
 	return count;
 }
 
