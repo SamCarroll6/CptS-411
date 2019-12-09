@@ -75,22 +75,22 @@ int main(int argc, char *argv[])
 	Vertices = myGraph.size();
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
-	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static) reduction(+:total)
-	for(i = 0; i < Vertices; i++)
-	{
-		Walk(V[i], damping, K);
-		total++;
-	}
+	// double time = omp_get_wtime();
+	// #pragma omp parallel for schedule(static) reduction(+:total)
+	// for(i = 0; i < Vertices; i++)
+	// {
+	// 	Walk(V[i], damping, K);
+	// 	total++;
+	// }
 
-	time = omp_get_wtime() - time;
+	// time = omp_get_wtime() - time;
 
-	for(auto run : myGraph)
-	{
-		std::cout << run.second.front() << std::endl;
-	}
-	std::cout << "Total = " << total << std::endl;
-	std::cout << "Total time = " << time << "seconds" << std::endl;
+	// for(auto run : myGraph)
+	// {
+	// 	std::cout << run.second.front() << std::endl;
+	// }
+	// std::cout << "Total = " << total << std::endl;
+	// std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
 }
 
