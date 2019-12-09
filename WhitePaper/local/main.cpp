@@ -114,12 +114,21 @@ void generateGraph(std::string fName)
 				Vertex = stoll(hold[0]);
 				Edge = stoll(hold[1]);
 				if(myGraph.count(Vertex) != 0)
+				{
 					myGraph[Vertex].push_back(Edge);
+				}
 				else
 				{
 					std::list<long long int> EdgeHold;
+					EdgeHold.push_back(0);
 					EdgeHold.push_back(Edge);
 					myGraph.insert({Vertex,EdgeHold});
+				}
+				if(myGraph.count(Edge) == 0)
+				{
+					std::list<long long int> EdgeHold;
+					EdgeHold.push_back(0);
+					myGraph.insert({Edge,EdgeHold});
 				}
 			}
 		}
@@ -131,8 +140,14 @@ void generateGraph(std::string fName)
 	}
 	for(auto vertex : myGraph)
 	{
+		bool first = true;
 		std::cout << vertex.first << std::endl; 
 		for(auto edge : vertex.second){
+			if(first)
+			{
+				first = false;
+				continue;
+			}
 			std::cout << '\t' << edge << std::endl;
 		}
 	}
