@@ -179,7 +179,7 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 		if(dampcheck <= damping)
 		{
 			seed = seed * 4;
-			next = rand_r((unsigned int*)&seed) % size;
+			next = (rand_r((unsigned int*)&seed)) % size;
 			curHop = V[next];
 		}
 		else
