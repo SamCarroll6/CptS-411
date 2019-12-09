@@ -196,12 +196,12 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 				for(auto check : myGraph[Vertex])
 				{
 					std::cout << check << std::endl;
-					// if(count == next)
-					// {
-					// 	curHop = V[check];
-					// 	break;
-					// }
-					// count++;
+					if(count == next)
+					{
+						//curHop = V[check];
+						break;
+					}
+					count++;
 				}
 			}
 		}
