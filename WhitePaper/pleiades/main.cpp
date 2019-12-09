@@ -85,10 +85,10 @@ int main(int argc, char *argv[])
 
 	time = omp_get_wtime() - time;
 
-	for(auto run : myGraph)
-	{
-		std::cout << run.second.front() << std::endl;
-	}
+	// for(auto run : myGraph)
+	// {
+	// 	std::cout << run.second.front() << std::endl;
+	// }
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
@@ -191,19 +191,20 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
 															 // but it also qualifies for that vertexes edge to itself
 															 // since it is always present on every vertex.
-			if(next != 0)
-			{
-				for(auto check : myGraph[Vertex])
-				{
-					if(count == next)
-					{
-						preHop = curHop;
-						curHop = V[check];
-						break;
-					}
-					count++;
-				}
-			}
+			std::cout << next << std::endl;
+			// if(next != 0)
+			// {
+			// 	for(auto check : myGraph[Vertex])
+			// 	{
+			// 		if(count == next)
+			// 		{
+			// 			preHop = curHop;
+			// 			curHop = V[check];
+			// 			break;
+			// 		}
+			// 		count++;
+			// 	}
+			// }
 		}
 	}
 }
