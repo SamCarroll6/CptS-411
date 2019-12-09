@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(i = 0; i < Vertices; i++)
 	{
-	// 	Walk(V[i], damping, K);
+		Walk(V[i], damping, K);
 	// 	total++;
 	}
 
