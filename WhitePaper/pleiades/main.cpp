@@ -69,29 +69,27 @@ int main(int argc, char *argv[])
 
 		int rank = omp_get_thread_num();
 	}
-
 	Edges = generateGraph(fName);
-
 	Vertices = myGraph.size();
 	long long int total = 0;
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
 
-	double time = omp_get_wtime();
+	//double time = omp_get_wtime();
 	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(int i = 0; i < Vertices; i++)
 	{
 		Walk(V[i], damping, K);
 		total++;
 	}
-	time = omp_get_wtime() - time;
+	//time = omp_get_wtime() - time;
 	long long int sum = 0;
 	for(auto run : myGraph)
 	{
 		std::cout << run.second.front() << std::endl;
 	}
 	std::cout << "Total = " << total << std::endl;
-	std::cout << "Total time = " << time << "seconds" << std::endl;
+	//std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
 }
 
