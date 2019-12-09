@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
 	long long int K = 0; // Length of Walk
 	long long int Vertices = 0, Edges = 0;
 	int damping = 0; // Damping value 0 - 100	
-
 	if(argc<3) {
 		printf("Usage: loop [Length of Walk] [Damping value {0-100}] {Optional: Number of Threads} {Optional: Filename}\n");
 		exit(1);
@@ -86,6 +85,11 @@ int main(int argc, char *argv[])
 		total++;
 	}
 	time = omp_get_wtime() - time;
+	long long int sum = 0;
+	for(auto run : myGraph)
+	{
+		std::cout << run.second.front() << std::endl;
+	}
 
     printf("Total = %lld\n", total);
 	printf("Total time = %f seconds \n ", time);
@@ -173,27 +177,48 @@ long long int generateGraph(std::string fName)
 void Walk(long long int Vertex, int damping, long long int walk) {
 
     long long int total = 0;
-	long long int j;
-
+	long long int j, curHop = Vertex, preHop, count;
+	long long int size = V.size();
+	long long int next;
+	int rank = omp_get_thread_num();
+	unsigned long long int seed = rank+1;
+	long long int edges = 0;
+	int dampcheck = 0;
 
 	for(j = 0; j < walk; j++)
 	{
-		int rank = omp_get_thread_num();
-		unsigned long long int seed = rank+1;
+		#pragma omp atomic
+			myGraph[curHop].front()++;
 		seed = seed*j;
-		int dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
+		dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
 		if(dampcheck <= damping)
 		{
-			//std::cout << "TRUE  " << dampcheck << std::endl;
+			seed = seed / 4;
+			next = rand_r((unsigned int*)&seed) % size;
+			curHop = V[next];
 		}
 		else
 		{
-			//std::cout << "FALSE  " << dampcheck << std::endl;
+			seed = seed / 4;
+			edges =  myGraph[curHop].size();
+			count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
+					   // the next node is just itself.
+			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
+															 // but it also qualifies for that vertexes edge to itself
+															 // since it is always present on every vertex.
+			if(next != 0)
+			{
+				for(auto check : myGraph[Vertex])
+				{
+					if(count == next)
+					{
+						preHop = curHop;
+						curHop = V[check];
+						break;
+					}
+					count++;
+				}
+			}
 		}
-			// int rank = omp_get_thread_num();
-			// float x = (float)rand_r((unsigned int*)&seed)/RAND_MAX;
-			// seed = seed / 2;
-			// float y = (float)rand_r((unsigned int*)&seed)/RAND_MAX;
-			// float distance = sqrt((pow((x - 0.5), 2)+pow((y-0.5),2)));
 	}
 }
