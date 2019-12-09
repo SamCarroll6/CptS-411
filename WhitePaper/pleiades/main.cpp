@@ -73,22 +73,22 @@ int main(int argc, char *argv[])
 	}
 	Edges = generateGraph(fName);
 	Vertices = myGraph.size();
-	// std::cout << "Vertices: " << Vertices << std::endl;
-	// std::cout << "Edges: " << Edges << std::endl;
+	std::cout << "Vertices: " << Vertices << std::endl;
+	std::cout << "Edges: " << Edges << std::endl;
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static)
+	#pragma omp parallel for schedule(static) reduction(+:total)
 	for(i = 0; i < Vertices; i++)
 	{
 		Walk(V[i], damping, K);
-		//total++;
+		total++;
 	}
 
 	time = omp_get_wtime() - time;
 
-	// for(auto run : myGraph)
-	// {
-	// 	std::cout << run.second.front() << std::endl;
-	// }
+	for(auto run : myGraph)
+	{
+		std::cout << run.second.front() << std::endl;
+	}
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
@@ -178,13 +178,13 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 		dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
 		if(dampcheck <= damping)
 		{
-			seed = seed / 4;
+			seed = seed * 4;
 			next = rand_r((unsigned int*)&seed) % size;
 			curHop = V[next];
 		}
 		else
 		{
-			seed = seed / 4;
+			seed = seed * 4;
 			edges =  myGraph[curHop].size();
 			count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
 					   // the next node is just itself.
