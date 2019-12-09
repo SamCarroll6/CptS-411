@@ -74,11 +74,12 @@ int main(int argc, char *argv[])
 	long long int total = 0;
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
-
+	long long int i;
 	double time = omp_get_wtime();
 	#pragma omp parallel for schedule(static) reduction(+:total)
-	for(int i = 0; i < Vertices; i++)
+	for(i = 0; i < Vertices; i++)
 	{
+		std::cout << "Try Walking!\n";
 		Walk(V[i], damping, K);
 		total++;
 	}
@@ -169,8 +170,6 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 	long long int edges = 0;
 	int dampcheck = 0;
 
-
-	std::cout << "Walking baby!\n";
 	for(j = 0; j < walk; j++)
 	{
 		#pragma omp atomic
