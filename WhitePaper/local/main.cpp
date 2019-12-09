@@ -84,11 +84,13 @@ int main(int argc, char *argv[])
 	}
 
 	time = omp_get_wtime() - time;
-
-	// for(auto run : myGraph)
+	long long int sum = 0;
+	// for(const auto& run : myGraph)
 	// {
-	// 	std::cout << run.second.front() << std::endl;
+	// 	std::cout << run.first << ' ' << run.second.front() << std::endl;
+	// 	sum += run.second.front();
 	// }
+	std::cout << "Sum: " << sum << std::endl;
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
@@ -182,28 +184,27 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			next = (rand_r((unsigned int*)&seed)) % size;
 			curHop = V[next];
 		}
-		else
-		{
-			seed = seed * 4;
-			edges =  myGraph[curHop].size();
-			count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
-					   // the next node is just itself.
-			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
-															 // but it also qualifies for that vertexes edge to itself
-															 // since it is always present on every vertex.
-			if(next != 0)
-			{
-				for(auto check : myGraph[Vertex])
-				{
-					std::cout << check << std::endl;
-					if(count == next)
-					{
-						curHop = V[check];
-						break;
-					}
-					count++;
-				}
-			}
-		}
+		// else
+		// {
+		// 	seed = seed * 4;
+		// 	edges =  myGraph[curHop].size();
+		// 	count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
+		// 			   // the next node is just itself.
+		// 	next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
+		// 													 // but it also qualifies for that vertexes edge to itself
+		// 													 // since it is always present on every vertex.
+		// 	if(next != 0)
+		// 	{
+		// 		for(auto check : myGraph[curHop])
+		// 		{
+		// 			if(count == next)
+		// 			{
+		// 				curHop = check;
+		// 				break;
+		// 			}
+		// 			count++;
+		// 		}
+		// 	}
+		// }
 	}
 }
