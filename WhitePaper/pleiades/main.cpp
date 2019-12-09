@@ -21,7 +21,7 @@
 #include <fstream>
 #include <vector>
 
-std::map<long long int, std::list<long long int>> myGraph;
+std::map<long long int, std::vector<long long int>> myGraph;
 
 std::vector<long long int> V; // V will hold the numbers of vertexes to make finding the values easier because I can't iterate a map in this version
 				 // of Openmp
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	long long int i;
 	int damping = 0; // Damping value 0 - 100	
 	if(argc<3) {
-		printf("Usage: loop [Length of Walk] [Damping value {0-100}] {Optional: Number of Threads} {Optional: Filename}\n");
+		printf("Usage: loop [Length of Walk] [Damping value 0-100] {Optional: Number of Threads} {Optional: Filename}\n");
 		exit(1);
 	}
 	
@@ -85,11 +85,11 @@ int main(int argc, char *argv[])
 
 	time = omp_get_wtime() - time;
 	long long int sum = 0;
-	// for(const auto& run : myGraph)
-	// {
-	// 	std::cout << run.first << ' ' << run.second.front() << std::endl;
-	// 	sum += run.second.front();
-	// }
+	for(const auto& run : myGraph)
+	{
+		std::cout << run.first << ' ' << run.second.front() << std::endl;
+		sum += run.second.front();
+	}
 	std::cout << "Sum: " << sum << std::endl;
 	std::cout << "Total = " << total << std::endl;
 	std::cout << "Total time = " << time << "seconds" << std::endl;
@@ -120,7 +120,7 @@ long long int generateGraph(std::string fName)
 		{
 			if(curLine[0] == '#')
 			{
-				std::cout << curLine;
+				std::cout << curLine << std::endl;
 			}
 			else
 			{
@@ -135,7 +135,7 @@ long long int generateGraph(std::string fName)
 				}
 				else
 				{
-					std::list<long long int> EdgeHold;
+					std::vector<long long int> EdgeHold;
 					EdgeHold.push_back(0);
 					EdgeHold.push_back(Edge);
 					myGraph.insert({Vertex,EdgeHold});
@@ -144,7 +144,7 @@ long long int generateGraph(std::string fName)
 				}
 				if(myGraph.count(Edge) == 0)
 				{
-					std::list<long long int> EdgeHold;
+					std::vector<long long int> EdgeHold;
 					EdgeHold.push_back(0);
 					myGraph.insert({Edge,EdgeHold});
 					V.push_back(Edge);
@@ -157,6 +157,15 @@ long long int generateGraph(std::string fName)
 		std::cout << "Could not open file\n";
 		return 0;
 	}
+	// int verts = 0, eds = 0;
+	// for(auto run : myGraph)
+	// {
+
+	// 	std::cout << run.first << ' ' << run.second.size() << std::endl;
+	// 	verts++;
+	// 	eds += run.second.size();
+	// }
+	// std::cout << verts << ' ' << eds << std::endl;
 	return count;
 }
 
@@ -184,27 +193,29 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			next = (rand_r((unsigned int*)&seed)) % size;
 			curHop = V[next];
 		}
-		// else
-		// {
-		// 	seed = seed * 4;
-		// 	edges =  myGraph[curHop].size();
-		// 	count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
-		// 			   // the next node is just itself.
-		// 	next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
-		// 													 // but it also qualifies for that vertexes edge to itself
-		// 													 // since it is always present on every vertex.
-		// 	if(next != 0)
-		// 	{
-		// 		for(auto check : myGraph[curHop])
-		// 		{
-		// 			if(count == next)
-		// 			{
-		// 				curHop = check;
-		// 				break;
-		// 			}
-		// 			count++;
-		// 		}
-		// 	}
-		// }
+		else
+		{
+			seed = seed * 4;
+			edges =  myGraph[curHop].size();
+			count = 1; // Count starts at 1 because nothing needs to change if next node returns 0 as 
+					   // the next node is just itself.
+			next = (rand_r((unsigned int*)&seed) % edges); // I use my first value in vector of edges for a visit count
+															 // but it also qualifies for that vertexes edge to itself
+															 // since it is always present on every vertex.		
+			if(next != 0)
+			{
+				//std::cout << curHop << std::endl;
+				for(count = 1; count < edges; count++)
+				{
+					// std::cout << count << ' ' << next << ' ';
+					// std::cout << '\t' << check << std::endl;
+					if(count == next)
+					{
+						curHop = myGraph[curHop][count];
+						break;
+					}
+				}
+			}
+		}
 	}
 }
