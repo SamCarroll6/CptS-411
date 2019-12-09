@@ -176,12 +176,12 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			myGraph[curHop].front()++;
 		seed = seed*j;
 		dampcheck = (rand_r((unsigned int*)&seed) % 100) + 1; // should be 1 - 100
-	// 	if(dampcheck <= damping)
-	// 	{
-	// 		seed = seed * 4;
-	// 		next = (rand_r((unsigned int*)&seed)) % size;
-	// 		curHop = V[next];
-	// 	}
+		if(dampcheck <= damping)
+		{
+			seed = seed * 4;
+			next = (rand_r((unsigned int*)&seed)) % size;
+			curHop = V[next];
+		}
 	// 	else
 	// 	{
 	// 		seed = seed * 4;
