@@ -90,9 +90,8 @@ int main(int argc, char *argv[])
 	{
 		std::cout << run.second.front() << std::endl;
 	}
-
-    printf("Total = %lld\n", total);
-	printf("Total time = %lf seconds \n ", time);
+	std::cout << "Total = " << total << std::endl;
+	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
 }
 
