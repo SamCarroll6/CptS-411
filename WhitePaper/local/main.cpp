@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 	}
 
     printf("Total = %lld\n", total);
-	printf("Total time = %f seconds \n ", time);
+	printf("Total time = %lf seconds \n ", time);
 	return 0;
 }
 
