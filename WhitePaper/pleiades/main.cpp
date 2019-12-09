@@ -162,7 +162,7 @@ long long int generateGraph(std::string fName)
 void Walk(long long int Vertex, int damping, long long int walk) {
 
     long long int total = 0;
-	long long int j, curHop = Vertex, preHop, count;
+	long long int j, curHop = Vertex, count;
 	long long int size = V.size();
 	long long int next;
 	int rank = omp_get_thread_num();
@@ -191,19 +191,19 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
 															 // but it also qualifies for that vertexes edge to itself
 															 // since it is always present on every vertex.
-			std::cout << next << std::endl;
+			std::cout << next << ' ';
 			// if(next != 0)
 			// {
-			// 	for(auto check : myGraph[Vertex])
-			// 	{
-			// 		if(count == next)
-			// 		{
-			// 			preHop = curHop;
-			// 			curHop = V[check];
-			// 			break;
-			// 		}
-			// 		count++;
-			// 	}
+				for(auto check : myGraph[Vertex])
+				{
+					std::cout << check << std::endl;
+					// if(count == next)
+					// {
+					// 	curHop = V[check];
+					// 	break;
+					// }
+					// count++;
+				}
 			// }
 		}
 	}
