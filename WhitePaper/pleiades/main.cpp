@@ -170,8 +170,8 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 	long long int edges = 0;
 	int dampcheck = 0;
 
-	// for(j = 0; j < walk; j++)
-	// {
+	for(j = 0; j < walk; j++)
+	{
 		#pragma omp atomic
 			myGraph[curHop].front()++;
 	// 	seed = seed*j;
@@ -205,5 +205,5 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 	// 			}
 	// 		}
 	// 	}
-	// }
+	}
 }
