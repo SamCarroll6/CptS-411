@@ -1,7 +1,7 @@
 #! /bin/sh
 
 
-g++ -std=c++11 -o main -fopenmp test.cpp -lm
+g++ -std=c++11 -o main -fopenmp main.cpp -lm
 
 
 if [ -z "$3" ]
