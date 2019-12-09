@@ -191,9 +191,8 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
 															 // but it also qualifies for that vertexes edge to itself
 															 // since it is always present on every vertex.
-			std::cout << next << ' ';
-			// if(next != 0)
-			// {
+			if(next != 0)
+			{
 				for(auto check : myGraph[Vertex])
 				{
 					std::cout << check << std::endl;
@@ -204,7 +203,7 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 					// }
 					// count++;
 				}
-			// }
+			}
 		}
 	}
 }
