@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
 
 		int rank = omp_get_thread_num();
 	}
-	// Edges = generateGraph(fName);
-	// Vertices = myGraph.size();
+	Edges = generateGraph(fName);
+	Vertices = myGraph.size();
 	// std::cout << "Vertices: " << Vertices << std::endl;
 	// std::cout << "Edges: " << Edges << std::endl;
 	std::cout << "Test1" << std::endl;
