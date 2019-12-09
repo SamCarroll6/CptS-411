@@ -198,7 +198,7 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 					std::cout << check << std::endl;
 					if(count == next)
 					{
-						//curHop = V[check];
+						curHop = V[check];
 						break;
 					}
 					count++;
