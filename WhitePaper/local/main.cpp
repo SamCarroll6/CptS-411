@@ -191,19 +191,19 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 			next = (rand_r((unsigned int*)&seed) % (edges)); // I use my first value in list of edges for a visit count
 															 // but it also qualifies for that vertexes edge to itself
 															 // since it is always present on every vertex.
-	// 		if(next != 0)
-	// 		{
-	// 			for(auto check : myGraph[Vertex])
-	// 			{
-	// 				if(count == next)
-	// 				{
-	// 					preHop = curHop;
-	// 					curHop = V[check];
-	// 					break;
-	// 				}
-	// 				count++;
-	// 			}
-	// 		}
+			if(next != 0)
+			{
+				for(auto check : myGraph[Vertex])
+				{
+					if(count == next)
+					{
+						preHop = curHop;
+						curHop = V[check];
+						break;
+					}
+					count++;
+				}
+			}
 		}
 	}
 }
