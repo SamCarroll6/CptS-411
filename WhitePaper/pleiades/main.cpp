@@ -105,6 +105,13 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
+/*
+ * TopFive function:
+ * This function is what I use to calculate the top 5 visited nodes
+ * in the graph, I do it a single pass through of the graph (O(n) time)
+ * to reduce on time consumption since the graphs are so huge and this section
+ * is done serially.
+ */
 void TopFive(long long int total)
 {
 	std::stack<struct maxfive> ret;
@@ -153,6 +160,11 @@ void TopFive(long long int total)
 	}
 }
 
+/*
+ * Split function:
+ * This is a simply function for splitting a string based on
+ * a provided deliminator, 
+ */
 std::vector<std::string> split(std::string line, char delim)
 {
 	std::vector<std::string> ret; 
