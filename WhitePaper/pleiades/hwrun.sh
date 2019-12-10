@@ -8,5 +8,5 @@ if [ -z "$3" ]
 then
 	./main 1024 4
 else
-	./main $1 $2 $3 $4
+	./main $1 $2 $3
 fi
