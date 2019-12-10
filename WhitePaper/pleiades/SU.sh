@@ -3,13 +3,13 @@
 
 if [ -z "$1" ]
 then
-    sbatch -N1 ./hwrun.sh 1000 0 8
+    sbatch -N1 ./hwrun.sh 100 10 8
     sleep 2
     sbatch -N1 ./hwrun.sh 1000 10 8
     sleep 2
-    sbatch -N1 ./hwrun.sh 1000 50 8
+    sbatch -N1 ./hwrun.sh 10000 10 8
     sleep 2
-    sbatch -N1 ./hwrun.sh 1000 90 8
+    sbatch -N1 ./hwrun.sh 100000 10 8
     sleep 2
 else
     sbatch -N1 ./hwrun.sh $1 1
