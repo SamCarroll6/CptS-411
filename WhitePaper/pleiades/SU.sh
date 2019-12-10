@@ -3,13 +3,13 @@
 
 if [ -z "$1" ]
 then
-    sbatch -N1 ./hwrun.sh 10 10 1 ../Paths/web-Google_sorted.txt
+    sbatch -N1 ./hwrun.sh 100 10 1 ../Paths/web-Google_sorted.txt
     sleep 2
-    sbatch -N1 ./hwrun.sh 10 10 2 ../Paths/web-Google_sorted.txt
+    sbatch -N1 ./hwrun.sh 100 10 2 ../Paths/web-Google_sorted.txt
     sleep 2
-    sbatch -N1 ./hwrun.sh 10 10 4 ../Paths/web-Google_sorted.txt
+    sbatch -N1 ./hwrun.sh 100 10 4 ../Paths/web-Google_sorted.txt
     sleep 2
-    sbatch -N1 ./hwrun.sh 10 10 8 ../Paths/web-Google_sorted.txt
+    sbatch -N1 ./hwrun.sh 100 10 8 ../Paths/web-Google_sorted.txt
     sleep 2
 else
     sbatch -N1 ./hwrun.sh $1 1
