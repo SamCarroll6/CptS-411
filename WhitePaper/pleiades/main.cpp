@@ -1,8 +1,8 @@
 /*
  * Samuel Carroll
  * CPTS 411
- * HW 4
- * November 14th, 2019
+ * White Paper Project
+ * December 9th, 2019
  * 
  */
 
@@ -22,6 +22,12 @@
 #include <vector>
 #include <stack>
 
+/*
+ * Simple struct I use to hold key, value pair for when I'm
+ * calculating my top 5 highest values, I wanted to return both 
+ * the keys that hold those values and the values themselves so I used
+ * this struct to keep them tied together. 
+ */
 struct maxfive
 {
 	long long int key;
@@ -78,29 +84,28 @@ int main(int argc, char *argv[])
 
 		int rank = omp_get_thread_num();
 	}
+
 	Edges = generateGraph(fName);
 	Vertices = myGraph.size();
 	std::cout << "Vertices: " << Vertices << std::endl;
 	std::cout << "Edges: " << Edges << std::endl;
+
+	/*
+	 * This is where the parallel for loop is called. This loop simply
+	 * divides the vertices evenly among the threads and allows each 
+	 * thread to then make its walk with each vertex. 
+	 */
 	double time = omp_get_wtime();
-	#pragma omp parallel for schedule(static) reduction(+:total)
+
+	#pragma omp parallel for schedule(static)
 	for(i = 0; i < Vertices; i++)
 	{
 		Walk(V[i], damping, K);
-		total++;
 	}
 
 	time = omp_get_wtime() - time;
-	// long long int sum = 0;
-	// for(const auto& run : myGraph)
-	// {
-	// 	std::cout << run.first << ' ' << run.second.front() << std::endl;
-	// 	sum += run.second.front();
-	// }
 	long long int nK = Vertices * K;
-	TopFive(nK);
-	// std::cout << "Sum: " << sum << std::endl;
-	std::cout << "Total = " << total << std::endl;
+	TopFive(nK); // Call top 5 and give the n*K value that will help find the ratios of visits to total walks. 
 	std::cout << "Total time = " << time << "seconds" << std::endl;
 	return 0;
 }
@@ -162,8 +167,9 @@ void TopFive(long long int total)
 
 /*
  * Split function:
- * This is a simply function for splitting a string based on
- * a provided deliminator, 
+ * This is a simply function for splitting a string based on a
+ * provided deliminator char. This is used in separating the Vertex
+ * with its corresponding edge when reading in the graph.
  */
 std::vector<std::string> split(std::string line, char delim)
 {
@@ -178,6 +184,17 @@ std::vector<std::string> split(std::string line, char delim)
 	return ret;
 }
 
+/*
+ * GenerateGraph function:
+ * This is the function to generate the graph. It takes only a file name as input
+ * and goes to open that file. Once the file is open it traverses it line by line
+ * and adds every vertex and corresponding edge to the global variable map that I have.
+ * If an edge is being added and that edge is has not been made a vertex yet that edge
+ * will be added as a vertex, this is to ensure that all vertices that don't have any 
+ * outgoing edges will stil be able to exist in the map. The vector is always initialized
+ * with a 0 value which represents the number of visits counter, after that it's all made
+ * up of that vertices edges. 
+ */
 long long int generateGraph(std::string fName)
 {
 	std::string curLine;
@@ -194,6 +211,8 @@ long long int generateGraph(std::string fName)
 			else
 			{
 				std::vector<std::string> hold;
+				// This is ' ' because it's currently set up to work with the Facebook file
+				// I just modify this delimiter when I want to test on other files. 
 				hold = split(curLine, ' ');
 				Vertex = stoll(hold[0]);
 				Edge = stoll(hold[1]);
@@ -226,19 +245,22 @@ long long int generateGraph(std::string fName)
 		std::cout << "Could not open file\n";
 		return 0;
 	}
-	// int verts = 0, eds = 0;
-	// for(auto run : myGraph)
-	// {
-
-	// 	std::cout << run.first << ' ' << run.second.size() << std::endl;
-	// 	verts++;
-	// 	eds += run.second.size();
-	// }
-	// std::cout << verts << ' ' << eds << std::endl;
 	return count;
 }
 
-
+/*
+ * Walk function:
+ * This is the function which addresses the algorithm we're meant to be implementing
+ * in this project. For its inputs it takes the Vertex value that you want to start
+ * from, the damping value to determine where you'll go next, and the total length of 
+ * the walk. This function is only called within a parallel for loop and thus has some
+ * precautions for thread safety even though within itself it never actually makes itself
+ * parallel, this is the reason for a omp atomic being called in an otherwise serial looking
+ * function. The function itself simply iterates the current vertex, then generates a 
+ * "damping coin flip" to determine if the next vertex will be one of its edges or a random 
+ * vertex in the graph, it jumps to the new vertex, iterates that vertices number of visits and
+ * the walk continues until it reaches the user provided walk length. 
+ */
 void Walk(long long int Vertex, int damping, long long int walk) {
 
     long long int total = 0;
@@ -273,11 +295,8 @@ void Walk(long long int Vertex, int damping, long long int walk) {
 															 // since it is always present on every vertex.		
 			if(next != 0)
 			{
-				//std::cout << curHop << std::endl;
 				for(count = 1; count < edges; count++)
 				{
-					// std::cout << count << ' ' << next << ' ';
-					// std::cout << '\t' << check << std::endl;
 					if(count == next)
 					{
 						curHop = myGraph[curHop][count];
